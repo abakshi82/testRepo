@@ -31,32 +31,32 @@
 	</taskdef>
 	
 	<target name="proxy">
-        <property name="proxy.host" value="proxy-pac.ca.sunlife" />
-        <property name="proxy.port" value="8443" />
+        <property name="proxy.host" value="" />
+        <property name="proxy.port" value="" />
         <setproxy proxyhost="${proxy.host}" proxyport="${proxy.port}"  />
 	</target>
 	
 	
 	<!-- Deploy code and DO NOT run unit tests.  -->
-	<target name="deployCode" depends="proxy">
+	<target name="deployCode">
 		<sf:deploy username="${sf.username}" password="${sf.password}" sessionId="${sf.sessionId}" serverurl="${sf.serverurl}" 
       		maxPoll="20" deployRoot="../force-app/main/default" testLevel="NoTestRun" rollbackOnError="true" logType="Debugonly"/>
 	</target>
 
 	<!-- Validate Deploy with no Unit Tests. -->
-	<target name="validateDeploy" depends="proxy">
+	<target name="validateDeploy">
 		<sf:deploy username="${sf.username}" password="${sf.password}" sessionId="${sf.sessionId}" serverurl="${sf.serverurl}" 
-      		maxPoll="${sf.maxPoll}" deployRoot="..\src" checkOnly="true" testLevel="NoTestRun" rollbackOnError="true" logType="Debugonly"/>
+      		maxPoll="${sf.maxPoll}" deployRoot="../force-app/main/default" checkOnly="true" testLevel="NoTestRun" rollbackOnError="true" logType="Debugonly"/>
 	</target>
 
 	<!-- Validate Deploy with Unit Tests. -->
-	<target name="validateDeployWithTest" depends="proxy">
+	<target name="validateDeployWithTest">
 		<sf:deploy username="${sf.username}" password="${sf.password}" sessionId="${sf.sessionId}" serverurl="${sf.serverurl}" 
-	      	maxPoll="${sf.maxPoll}" deployRoot="..\src" checkOnly="true" testLevel="RunLocalTests" rollbackOnError="true" logType="Debugonly"/>
+	      	maxPoll="${sf.maxPoll}" deployRoot="../force-app/main/default" checkOnly="true" testLevel="RunLocalTests" rollbackOnError="true" logType="Debugonly"/>
 	</target>
 
 	<!-- Run the Unit Tests only, no components deployed. -->
-	<target name="runUnitTestsOnly" depends="proxy">
+	<target name="runUnitTestsOnly">
 		<sf:deploy username="${sf.username}" password="${sf.password}" sessionId="${sf.sessionId}" serverurl="${sf.serverurl}" 
 			maxPoll="${sf.maxPoll}" deployRoot="..\emptysource" testLevel="RunLocalTests" logType="Debugonly" checkOnly="true"/>
 	</target>
