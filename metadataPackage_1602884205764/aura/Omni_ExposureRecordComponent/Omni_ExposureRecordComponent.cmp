@@ -1,0 +1,27 @@
+<aura:component implements="lightning:availableForFlowScreens">
+    <aura:attribute name="exposure" type="Case" />
+    <aura:attribute name="exposureId" type="String" />
+    <aura:attribute name="exposureType" type="String" />
+    <aura:attribute name="claimantName" type="String" />
+    <aura:attribute name="selected" type="boolean" access="public" default="false" />
+
+    <aura:registerEvent name="exposureSelectedEvent" type="c:Omni_ExposureSelectedEvent" />
+
+    <div onclick="{!c.select}" class="{! v.selected ? 'tile selected' : 'tile'}" style="cursor:pointer">
+        <lightning:tile class="innertile">
+            <aura:set attribute="media">
+                <lightning:icon iconName="{!v.exposureId == null ? 'standard:case' : 'standard:case_transcript'}" />
+            </aura:set>
+            <b><p class="slds-truncate"><lightning:formattedText title="Exposure Number" value="{!v.exposure.ExposureId__c}" /></p></b>
+            <p class="slds-truncate">
+                <lightning:formattedText title="Claimant Name" value="{!v.exposure.Claimant__r.Name}" />
+            </p>
+            <p class="slds-truncate">
+                <lightning:formattedText title="Case Number" value="{!v.exposure.CaseNumber}" />
+            </p>
+            <p class="slds-truncate">
+                <lightning:formattedText title="Exposure Type" value="{!v.exposure.ExposureType__r.Name}" />
+            </p>
+        </lightning:tile>
+    </div>
+</aura:component>

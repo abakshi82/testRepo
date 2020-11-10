@@ -1,0 +1,6 @@
+<design:component label="Exposure Selector">
+   <design:attribute name="claimId" label="Claim Id" />
+   <design:attribute name="roleId" label="Role Id" />
+   <design:attribute name="exposureSelected" label="Exposure Selected" />
+    <design:attribute name="exposureSelectedType" label="Exposure Selected Type (AB/BI/General)" />
+</design:component>

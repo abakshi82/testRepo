@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ActiveConfigs</fullName>
+    <columns>NAME</columns>
+    <columns>Eligibility_Criteria__c</columns>
+    <columns>EventName__c</columns>
+    <columns>Explicit__c</columns>
+    <columns>Custom_Criteria__c</columns>
+    <columns>Communication_Type__c</columns>
+    <columns>Role__c</columns>
+    <columns>Active__c</columns>
+    <columns>Exposure_Type__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Active__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>Active Configs</label>
+</ListView>

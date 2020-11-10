@@ -1,0 +1,23 @@
+<aura:component implements="force:appHostable,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="global">
+
+    <!--declare attributes-->
+    <aura:attribute name="templateId" type="String" access="global"/>
+    <aura:attribute name="roleRecord" type="Object"/>
+    <aura:attribute name="recordLoadError" type="String"/>
+
+    <force:recordData aura:id="recordLoader"
+                      recordId="{!v.recordId}"
+                      fields="CaseNumber, OwnerId"
+                      targetFields="{!v.roleRecord}"
+                      targetError="{!v.recordLoadError}"/>    
+
+    <lightning:card title="{!$Label.c.Omni_PrintLetter_Title_PrintLetter}">
+        <aura:set attribute="actions">
+            <br />
+            <lightning:button variant="neutral" label="{!$Label.c.Omni_PrintLetter_Btn_GenerateLetter}" title="Generate Letter" onclick="{!c.generateLetter}"/>
+        </aura:set>
+
+        <c:Omni_AdhocEmailTemplates templateId="{!v.templateId}"/>
+
+    </lightning:card>
+</aura:component>

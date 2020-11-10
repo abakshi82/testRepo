@@ -1,0 +1,4 @@
+<aura:event type="APPLICATION">
+    <aura:attribute name="selectedRole" type="Case" />
+    <aura:attribute name="stage" type="String" />
+</aura:event>

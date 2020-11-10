@@ -1,0 +1,90 @@
+<aura:component implements="lightning:availableForFlowScreens" controller="Omni_AdhocFlowController">
+    <aura:attribute name="filesList" type="list" />
+    <aura:attribute name="data" type="List" />
+    <aura:attribute name="claimNumber" type="String" access="global" />
+    <aura:attribute name="exposureType" type="String" access="global" />
+    <aura:attribute name="Spinner" type="boolean" default="false" />
+    <aura:attribute name="includeArchive" type="boolean" default="false" />
+    <aura:attribute name="filter" type="String" />
+
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}" />
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}" />
+    <aura:handler name="change" value="{!v.filter}" action="{!c.doFilter}" />
+
+    <aura:registerEvent name="fileRetrievedEvent" type="c:Omni_EcmFilesListEvent" />
+    <aura:registerEvent name="flowStageEvent" type="c:Omni_FlowStagesEvent" />
+
+    <aura:if isTrue="{!v.Spinner}">
+        <div aura:id="spinnerId" class="slds-spinner_container">
+            <div class="slds-spinner--brand  slds-spinner slds-spinner--large slds-is-relative" role="alert">
+                <span class="slds-assistive-text">Loading</span>
+                <div class="slds-spinner__dot-a"></div>
+                <div class="slds-spinner__dot-b"></div>
+            </div>
+        </div>
+    </aura:if>
+
+    <lightning:layout>
+        <lightning:layoutItem size="2">
+            <lightning:button label="{!$Label.c.Omni_Adhoc_Search}" class="slds-button_brand" onclick="{!c.searchECMFiles}" />
+        </lightning:layoutItem>
+        <lightning:layoutItem size="4">
+            <lightning:input type="checkbox" name="archive" label="{!$Label.c.Omni_Adhoc_IncludeArchive}" checked="{!v.includeArchive}" />
+        </lightning:layoutItem>
+        <lightning:layoutItem size="3">
+        </lightning:layoutItem>
+        <lightning:layoutItem size="3">
+            <lightning:input name="filterFile" value="{!v.filter}" placeholder="{!$Label.c.Omni_Adhoc_SearchFile}" />
+        </lightning:layoutItem>
+    </lightning:layout>
+
+    <div>
+        <br/>
+        <table class="slds-table slds-table--bordered slds-table--cell-buffer" role="grid">
+            <thead>
+                <tr class="slds-text-title--caps">
+                    <th>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Name">{!$Label.c.Omni_Adhoc_Name}</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Account">{!$Label.c.Omni_Adhoc_Type}</div>
+                    </th>
+
+                    <th scope="col">
+                        <div class="slds-truncate" title="Phone">{!$Label.c.Omni_Adhoc_Size}</div>
+                    </th>
+
+                    <th scope="col">
+                        <div class="slds-truncate" title="Email">CMP ID</div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <aura:iteration items="{!v.data}" var="file">
+                    <tr>
+                        <th>
+                            <lightning:button value="{!file}" label="Retrieve" class="slds-button_brand" onclick="{!c.retrieveECMFile}" />
+                        </th>
+                        <th scope="row">
+                            <div class="slds-truncate" title="{!file.documentTitle}">{!file.documentTitle}</div>
+                        </th>
+                        <td>
+                            <div class="slds-truncate" title="{!file.mimeType}">{!file.mimeType}</div>
+                        </td>
+                        <th scope="row">
+                            <div class="slds-truncate" title="{!file.fileSize}">{!file.fileSize}</div>
+                        </th>
+                        <td>
+                            <div class="slds-truncate" title="{!file.CMPID}">{!file.CMPID}</div>
+                        </td>
+                    </tr>
+                </aura:iteration>
+            </tbody>
+        </table>
+        <div>
+            <br/>
+        </div>
+    </div>
+</aura:component>

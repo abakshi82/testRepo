@@ -1,0 +1,36 @@
+<aura:component implements="force:appHostable,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="global" controller="Omni_Aura_MessagingSessionController">
+
+    <!--declare attributes-->
+
+    <aura:attribute name="selectedRecord" type="sObject" default="{}" access="public" description="Store SELECTED sObject Record" />
+    <aura:attribute name="hasMissingClaimError" type="Boolean" default="false" access="public" description="If record is required, show or hide error message" />
+
+    <!--declare events hendlers-->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <div class="slds-m-around_xx-large">
+        <aura:if isTrue="{!v.isOpen}">
+            <!--Modal Box start-->
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <!--Modal Box header start-->
+                    <header class="slds-modal__header">
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Select Claim/Exposure for this SMS Session</h2>
+                    </header>
+                    <!--Modal Box header end-->
+                    <!--Modal Box body start-->
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <c:Omni_ClaimSearch aura:id="claimSearch" selectedRecord="{!v.selectedRecord}" hasMissingClaimError="{!v.hasMissingClaimError}" />
+                    </div>
+
+                    <footer class="slds-modal__footer">
+                        <lightning:button variant="brand" label="Select" title="Select" onclick="{! c.saveRecord }" />
+                    </footer>
+                    <!--Modal Box body end-->
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+            <!--Modal Box end-->
+        </aura:if>
+    </div>
+</aura:component>

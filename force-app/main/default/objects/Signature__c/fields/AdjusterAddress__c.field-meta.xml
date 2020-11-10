@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AdjusterAddress__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(Adjuster__r.State=&apos;NB&apos;, &apos;20 Hector Gate, Suite 200, Dartmouth, NS B3B 0K3&apos;,IF(ISBLANK(Adjuster__r.Street), &apos;&apos;, Adjuster__r.Street+&apos;, &apos;)+ IF(ISBLANK(Adjuster__r.City), &apos;&apos;, Adjuster__r.City+&apos;, &apos;)+IF(ISBLANK(Adjuster__r.State), &apos;&apos;, Adjuster__r.State+&apos;, &apos;)+IF(ISBLANK(Adjuster__r.PostalCode), &apos;&apos;, Adjuster__r.PostalCode))</formula>
+    <label>Adjuster Address</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

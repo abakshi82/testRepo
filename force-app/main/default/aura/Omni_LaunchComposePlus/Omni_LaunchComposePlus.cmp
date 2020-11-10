@@ -1,0 +1,13 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global" >
+    <lightning:workspaceAPI aura:id="workspace" />
+    
+    <div class="slds">
+        <div style="height:64px" class="slds-p-vertical_medium">
+            <button 
+                    class="slds-button slds-button_brand slds-float_left slds-m-left_large" 
+                    onclick="{!c.handleOpenSubtab}">
+                Compose +
+            </button>
+        </div>
+    </div>
+</aura:component>

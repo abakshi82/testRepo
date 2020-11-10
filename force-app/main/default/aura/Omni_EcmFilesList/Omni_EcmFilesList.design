@@ -1,0 +1,4 @@
+<design:component label="Ecm Files List">
+   	<design:attribute name="claimNumber" label="Claim Number" />
+	<design:attribute name="exposureType" label="Exposure Type (AB/BI/General)" />
+</design:component>

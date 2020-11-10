@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Claim_Notification_Event</fullName>
+    <columns>NAME</columns>
+    <columns>Application_Name__c</columns>
+    <columns>Category__c</columns>
+    <columns>Integration_Type__c</columns>
+    <columns>Status__c</columns>
+    <columns>Transaction_Id__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>CREATEDBY_USER</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Application_Name__c</field>
+        <operation>equals</operation>
+        <value>Claim Notification Event</value>
+    </filters>
+    <label>Claim Notification Event</label>
+</ListView>

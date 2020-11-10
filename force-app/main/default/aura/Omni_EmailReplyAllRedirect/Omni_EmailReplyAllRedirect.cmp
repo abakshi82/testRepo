@@ -1,0 +1,14 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,lightning:actionOverride,force:lightningQuickAction" access="global" controller="Omni_Aura_EmailReplyController">
+
+
+
+    <!--declare events hendlers-->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <!--  Platform limitation - quick action modal cannt have custom width.  
+          This tag sets modal width without laoding static resource for all modals 
+          Set width to 50% of viewing window-->
+    <aura:html tag="style">
+        .slds-modal__container { visibility: hidden; }
+    </aura:html>
+</aura:component>

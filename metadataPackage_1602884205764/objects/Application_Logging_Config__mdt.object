@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Application Logging Config</label>
+    <pluralLabel>Application Logging Config</pluralLabel>
+    <visibility>Public</visibility>
+    <fields>
+        <fullName>All_Logs_Purge_Days__c</fullName>
+        <description>Purge days for all types of logs</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>All Logs Purge Days</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Exception_Logging_Enabled__c</fullName>
+        <defaultValue>true</defaultValue>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Exception Logging Enabled</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Exception_Logs_Purge_Days__c</fullName>
+        <defaultValue>60</defaultValue>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Exception Logs Purge Days</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Integration_Logging_Enabled__c</fullName>
+        <defaultValue>true</defaultValue>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Integration Logging Enabled</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Integration_Logs_Purge_Days__c</fullName>
+        <defaultValue>60</defaultValue>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Integration Logs Purge Days</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>MasterLabel</columns>
+        <columns>Exception_Logging_Enabled__c</columns>
+        <columns>Exception_Logs_Purge_Days__c</columns>
+        <columns>Integration_Logging_Enabled__c</columns>
+        <columns>Integration_Logs_Purge_Days__c</columns>
+        <columns>All_Logs_Purge_Days__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+</CustomObject>

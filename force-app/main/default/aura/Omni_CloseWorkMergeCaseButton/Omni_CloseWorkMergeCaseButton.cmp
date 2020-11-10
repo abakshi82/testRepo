@@ -1,0 +1,62 @@
+<aura:component controller="Omni_MergeCase_AuraController" implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="global" >
+    <lightning:omniToolkitAPI aura:id="omniToolkit"/>    
+    <lightning:workspaceAPI aura:id="workspace" />
+    <!--Attributes-->
+    <aura:attribute name="showConfirmDialog" type="boolean" default="false"/>
+    <aura:attribute name="mergeCaseRecord" type="Object"/>
+    <aura:attribute name="recordLoadError" type="String"/>
+    <aura:attribute name="masterCaseRecord" type="Object"/>
+    <aura:attribute name="hasMasterCase" type="boolean" default="false"/>
+    <aura:attribute name="isMyCase" type="boolean" default="false"/>
+
+    <div>
+        <lightning:button variant="destructive" label="{!$Label.c.Omni_CaseMerge_Btn_MergeCases}" title="Merge Cases" onclick="{!c.showConfirmMerge}"/>
+        
+        <aura:if isTrue="{!v.showConfirmDialog}">
+            <div role="dialog" class="slds-modal slds-fade-in-open ">
+                <div class="slds-modal__container">
+                    <aura:if isTrue="{!and(v.hasMasterCase, v.isMyCase)}">
+                        <header class="slds-modal__header">
+                            <h1 class="slds-text-heading--medium">{!$Label.c.Omni_CaseMerge_ModalHeader_Confirmation}</h1>
+                        </header>
+                        <div class="slds-modal__content slds-p-around--medium">
+                            <center><b>{!$Label.c.Omni_CaseMerge_RequestConfirmation}</b></center>
+                        </div>
+                        <footer class="slds-modal__footer">
+                            <lightning:button name='No' label='{!$Label.c.Omni_CaseMerge_Btn_No}' onclick='{!c.cancelMerge}'/>
+                            <lightning:button variant="brand" name='Yes' label='{!$Label.c.Omni_CaseMerge_Btn_Yes}' onclick='{!c.closeWorkMergeCases}'/>
+                        </footer>
+                        <aura:set attribute="else">
+                            <header class="slds-modal__header">
+                                <h1 class="slds-text-heading--medium">{!$Label.c.Omni_CaseMerge_ModalHeader_Error}</h1>
+                            </header>
+                            <aura:if isTrue="{!and(not(v.hasMasterCase), v.isMyCase)}">
+                                <div class="slds-modal__content slds-p-around--medium">
+                                    <center><b>{!$Label.c.Omni_CaseMerge_Msg_Error_No_Parent}</b></center>
+                                </div>
+                            </aura:if>
+                            <aura:if isTrue="{!and(v.hasMasterCase, not(v.isMyCase))}">
+                                <div class="slds-modal__content slds-p-around--medium">
+                                    <center><b>{!$Label.c.Omni_CaseMerge_Msg_Error_Not_Owner}</b></center>
+                                </div>
+                            </aura:if>
+                            <aura:if isTrue="{!and(not(v.hasMasterCase), not(v.isMyCase))}">
+                                <div class="slds-modal__content slds-p-around--medium">
+                                    <center><b>{!$Label.c.Omni_CaseMerge_Msg_Error_No_Parent}</b></center>
+                                    <center><b>{!$Label.c.Omni_CaseMerge_Msg_Error_Not_Owner}</b></center>
+                                </div>                            
+                            </aura:if>
+                            <footer class="slds-modal__footer">
+                                <lightning:button name='Return' label='{!$Label.c.Omni_CaseMerge_Btn_Return}' onclick='{!c.cancelMerge}'/>
+                            </footer>
+                        </aura:set>
+                    </aura:if> 
+                </div>
+            </div>
+            <div class="slds-backdrop slds-backdrop--open"></div>            
+        </aura:if>
+    </div>
+    <div class="spinnerWhileMerging">
+        <lightning:spinner class="slds-hide" variant="brand" aura:id="spinnerWhileMerging"/>
+    </div> 
+</aura:component>

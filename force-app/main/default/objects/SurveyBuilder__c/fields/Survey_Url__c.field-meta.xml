@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Survey_Url__c</fullName>
+    <externalId>false</externalId>
+    <formula>$Setup.Pulse_Survey_Configuration__c.Base_Url__c &amp; &apos;?c_id=&apos;&amp; ClaimForRole__c &amp; &apos;&amp;e_id=&apos;&amp; ExposureForRole__c &amp; &apos;&amp;time=&apos; &amp; TEXT( ROUND((now() - DATETIMEVALUE( &quot;2020-01-01 12:00:00&quot; )) * 24 * 60 * 60, 0 ) ) &amp; $Setup.Pulse_Survey_Configuration__c.Timestamp_Anchor__c &amp; &apos;&amp;pig_en=&apos; &amp; PIG_Logo_EN__c &amp; &apos;&amp;pig_fr=&apos; &amp; PIG_Logo_FR__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Survey url</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

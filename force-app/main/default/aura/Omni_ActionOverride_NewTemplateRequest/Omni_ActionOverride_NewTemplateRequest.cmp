@@ -1,0 +1,41 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,lightning:actionOverride"  controller="Omni_Aura_TemplateRequestController" access="global" >
+
+    <aura:attribute name="templateRecord"       type="Template_Request__c" />
+    <aura:attribute name="templateOptions"      type="List"/>
+    <aura:attribute name="isCreateNewTemplate"  type="Boolean" default="false"/>
+    
+    <force:recordData aura:id="forceRecord"
+                      recordId="{!v.recordId}"
+                      targetFields="{!v.templateRecord}"
+                      fields="Id,Name,Email_Template_Id__c,Email_Template_Name__c,Status__c,Is_New_Template__c"
+                      mode="EDIT" />
+ 
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" /> 
+
+    <div aura:id="editDialog" role="dialog" tabindex="-1" aria-labelledby="header43" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+                <div class="slds-modal__header">
+                    <h2 class="slds-text-heading--medium">{#$Label.c.Omni_ActionOverride_NewTemplateRequest_NewRequest}</h2>
+                </div>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <lightning:select name="selecttemplate" label="{#$Label.c.Omni_ActionOverride_NewTemplateRequest_SelectTemplate}" aura:id="templateId">
+                        <aura:iteration var="option" items="{! v.templateOptions }" >
+                            <option value="{! option.value }">{! option.label }</option>
+                        </aura:iteration>
+                    </lightning:select>
+                <br />
+                <ui:inputCheckbox aura:id="isCreateNew" label="{#$Label.c.Omni_ActionOverride_NewTemplateRequest_CreateNew}" change="{!c.handleCheckbox}"/>
+                <aura:renderIf isTrue="{!v.isCreateNewTemplate}">
+                    <lightning:input aura:id="newTemplateNameInput" required="{!v.isCreateNewTemplate}" label="{#$Label.c.Omni_ActionOverride_NewTemplateRequest_TemplateName}" pattern="^\S*$" messageWhenPatternMismatch="{#$Label.c.Omni_ActionOverride_NewTemplateRequest_TemplateNameValidationError}"/>
+                </aura:renderIf> 
+                </div>
+          
+            <div class="slds-modal__footer">                
+                <lightning:button variant="neutral" label="{#$Label.c.Omni_ActionOverride_NewTemplateRequest_Cancel}" onclick="{!c.cancelDialog}" />
+                <lightning:button variant="brand" label="{#$Label.c.Omni_ActionOverride_NewTemplateRequest_Create}" onclick="{!c.saveRecord}" />
+            </div>
+        </div> 
+    </div>
+    <div aura:id="overlay" class="slds-backdrop slds-backdrop--open"></div>
+   
+</aura:component>

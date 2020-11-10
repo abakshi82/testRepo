@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Score_Numerical__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE( Score__c ,
+&quot;Gold&quot;,10,
+&quot;green&quot;,5,
+&quot;yellow&quot;,3,
+&quot;red&quot;,1,
+NULL)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Score Numerical</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

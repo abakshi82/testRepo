@@ -1,0 +1,46 @@
+<aura:component controller="Omni_AdhocFlowController" implements="lightning:availableForFlowScreens">
+    <aura:attribute name="data" type="List" />
+    <aura:attribute name="templates" type="List" />
+    <aura:attribute name="foldersList" type="List" />
+    <aura:attribute name="folderSelected" type="String" />
+    <aura:attribute name="filter" type="String" />
+    <aura:attribute name="templateId" type="String" access="global" />
+    <aura:attribute name="preferredLanguage" type="String" access="global" default="E" />
+    <aura:attribute name="languageList" type="List" default="[{'label': 'English', 'value': 'E'}, {'label': 'Français', 'value': 'F'}]" />
+    <aura:attribute name="Spinner" type="boolean" default="false" />
+
+    <aura:registerEvent name="flowStageEvent" type="c:Omni_FlowStagesEvent" />
+    <aura:registerEvent name="templateSelectedEvent" type="c:Omni_AdhocEmailTemplateSelectedEvent" />
+
+    <aura:handler name="init" value="this" action="{!c.doInit}" />
+    <aura:handler name="change" value="{!v.filter}" action="{!c.doFilter}" />
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}" />
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}" />
+
+    <aura:if isTrue="{!v.Spinner}">
+        <div class="slds-spinner--brand  slds-spinner slds-spinner--large" role="alert">
+            <span class="slds-assistive-text">Loading</span>
+            <div class="slds-spinner__dot-a"></div>
+            <div class="slds-spinner__dot-b"></div>
+        </div>
+    </aura:if>
+
+    <div style="padding-top: 15px;">
+        <h3 class="slds-page-header__title slds-m-right_small slds-align-middle slds-truncate" title="Templates">{!$Label.c.Omni_Adhoc_SelectEmailTemplate}</h3>
+    </div>
+    <br/>
+    <lightning:layout multipleRows="true">
+        <lightning:layoutItem size="6">
+            <lightning:radioGroup label="{!$Label.c.Omni_Adhoc_Language}" name="languageGroup" options="{!v.languageList}" value="{!v.preferredLanguage}" type="button" onchange="{!c.updateTemplatesQuery}" />
+        </lightning:layoutItem>
+        <lightning:layoutItem size="12">
+            <lightning:combobox label="{!$Label.c.Omni_Adhoc_Folder}" options="{!v.foldersList}" onchange="{!c.updateTemplatesQuery}" value="{!v.folderSelected}" />
+        </lightning:layoutItem>
+        <lightning:layoutItem size="6">
+            <lightning:input label="{!$Label.c.Omni_Adhoc_Search}" name="filterTemplate" value="{!v.filter}" placeholder="{!$Label.c.Omni_Adhoc_Search}" disabled="{!v.folderSelected == null}" />
+        </lightning:layoutItem>
+        <lightning:layoutItem size="12">
+            <lightning:combobox label="{!$Label.c.Omni_Adhoc_Templates}" id="templatePicklist" name="Select a template" value="Email Templates" placeholder="{!$Label.c.Omni_Adhoc_none}" options="{!v.data}" onchange="{!c.selectTemplate}" />
+        </lightning:layoutItem>
+    </lightning:layout>
+</aura:component>

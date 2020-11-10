@@ -1,0 +1,4 @@
+<design:component label="Email Template List">
+    <design:attribute name="templateId" label="Template Id Selected" />
+    <design:attribute name="preferredLanguage" label="Preferred Language" />
+</design:component>

@@ -1,0 +1,51 @@
+<aura:component implements="force:hasRecordId,force:appHostable,lightning:availableForFlowScreens" controller="Omni_AdhocFlowController">
+    <aura:attribute name="flowStage" type="String" access="global" />
+    <aura:attribute name="claimId" type="String" access="global" />
+    <aura:attribute name="claimNumber" type="String" access="global" />
+    <aura:attribute name="allRoles" type="Case[]" />
+    <aura:attribute name="data" type="Case[]" />
+    <aura:attribute name="filter" type="String" />
+    <aura:attribute name="roleSelected" type="Case" access="global" />
+    <aura:attribute name="roleSelectedId" type="String" access="global" />
+    <aura:attribute name="emailRecipient" type="String" access="global" />
+    <aura:attribute name="exposureForRole" type="String" access="global" />
+    <aura:attribute name="preferredLanguage" type="String" access="global" />
+
+    <aura:attribute name="allRolesSelected" type="String[]" access="global" />
+
+    <aura:registerEvent name="flowStageEvent" type="c:Omni_FlowStagesEvent" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler name="change" value="{!v.filter}" action="{!c.doFilter}" />
+    <aura:handler event="c:Omni_Adhoc_IndividualRoleSelectedEvent" action="{!c.onRoleSelected}" />
+    <aura:registerEvent name="roleEventFired" type="c:Omni_RoleSelectedEvent" />
+
+    <lightning:layout>
+        <lightning:layoutItem size="12" padding="around-small">
+            <div style="padding-top: 15px;">
+                <h3 class="slds-page-header__title slds-m-right_small slds-align-middle slds-truncate" title="Roles">
+                    <aura:if isTrue="{!v.flowStage == $Label.c.Omni_Adhoc_Recipient}">
+                        {!$Label.c.Omni_Adhoc_SelectRole}
+                        <aura:set attribute="else">
+                            {!$Label.c.Omni_Adhoc_PleaseSelectCCRecipient}
+                        </aura:set>
+                    </aura:if>
+                </h3>
+            </div>
+            <div class="slds-size_1-of-3">
+                <lightning:input name="searchInput" value="{!v.filter}" placeholder="{!$Label.c.Omni_Adhoc_Search}" />
+            </div>
+            <lightning:layout multipleRows="true" title="Roles Related">
+                <aura:iteration var="role" items="{!v.data}">
+                    <lightning:layoutItem size="4" padding="around-small">
+                        <aura:if isTrue="{!v.flowStage == $Label.c.Omni_Adhoc_Recipient}">
+                            <c:Omni_RoleRecordComponent role="{!role}" roleId="{!role.Id}" flowStage="{!v.flowStage}" selected="{!v.roleSelectedId == role.Id}" />
+                            <aura:set attribute="else">
+                                <c:Omni_RoleRecordComponent role="{!role}" roleId="{!role.Id}" flowStage="{!v.flowStage}" />
+                            </aura:set>
+                        </aura:if>
+                    </lightning:layoutItem>
+                </aura:iteration>
+            </lightning:layout>
+        </lightning:layoutItem>
+    </lightning:layout>
+</aura:component>

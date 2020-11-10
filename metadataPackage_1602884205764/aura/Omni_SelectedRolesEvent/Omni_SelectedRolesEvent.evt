@@ -1,0 +1,9 @@
+<aura:event type="APPLICATION">
+    <aura:attribute name="stage" type="String" />
+    <aura:attribute name="sRoleIds" type="String[]" />
+    <aura:attribute name="sEmails" type="String[]" />
+    <aura:attribute name="sLanguage" type="String" />
+    <aura:attribute name="sExposure" type="String" />
+    <aura:attribute name="roleCases" type="Case[]" />
+    <aura:attribute name="sClaimNumber" type="String" />
+</aura:event>

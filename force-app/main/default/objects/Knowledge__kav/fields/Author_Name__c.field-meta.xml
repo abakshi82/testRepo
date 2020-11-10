@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Author_Name__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>It will store the name of the knowledge author</description>
+    <externalId>false</externalId>
+    <label>Author of the Article</label>
+    <referenceTo>User</referenceTo>
+    <relationshipName>Knowledge</relationshipName>
+    <required>false</required>
+    <type>Lookup</type>
+</CustomField>

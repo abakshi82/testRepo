@@ -1,0 +1,26 @@
+.THIS .text_gold {
+    color: darkorange;
+    font-weight: bold;
+}
+
+.THIS .text_green {
+    color: green;
+    font-weight: bold;
+}
+
+.THIS .text_yellow {
+    color: orange;
+    font-weight: bold;
+}
+
+.THIS .text_red {
+    color: red;
+    font-weight: bold;
+}
+
+.THIS .header_large {
+    color: rgb(136, 136, 136);
+    font-family: arial;
+    font-size: 48px;
+    font-weight: bold;
+}

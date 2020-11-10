@@ -1,0 +1,5 @@
+<aura:event type="APPLICATION">
+  <aura:attribute name="sExposureId" type="String"/>
+  <aura:attribute name="exposureType" type="String"/>
+  <aura:attribute name="exposureCase" type="Case"/>
+</aura:event>

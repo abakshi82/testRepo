@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Processed_by_ECM__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Checked once ECM has finished processing the document ( updated the ECM Id)</description>
+    <externalId>false</externalId>
+    <label>Processed by ECM</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

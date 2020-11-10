@@ -1,0 +1,22 @@
+<design:component label="Adhoc Files Component">
+    <design:attribute name="claimNumber" label="Claim Number" />
+    <design:attribute name="exposureType" label="Exposure Type (AB/BI/General)" />
+    <design:attribute name="selectedIds" label="File Ids" />
+    <design:attribute name="fileNames" label="File Names" />
+
+    <design:attribute name="templateId" label="Template Id" />
+    <design:attribute name="parentId" label="Case Id" />
+    <design:attribute name="roleId" label="Role Id" />
+    <design:attribute name="exposureForRole" label="Exposure For Role Id" />
+    <design:attribute name="exposureId" label="Exposure Id" />
+    <design:attribute name="toEmail" label="To Email" />
+    <design:attribute name="ccEmails" label="CC Emails" />
+    <design:attribute name="fileIds" label="File Ids" />
+
+    <design:attribute name="allRolesSelected" label="All Selected Role Ids" />
+    <design:attribute name="allEmailsSelected" label="All Selected Role Emails" />
+    <design:attribute name="allManualEmailsSelected" label="All Selected Manual Emails" />
+    <design:attribute name="allCCEmailsSelected" label="All Selected CC Role Emails" />
+    <design:attribute name="allManualCCEmailsSelected" label="All Selected CC Manual Role Emails" />
+
+</design:component>

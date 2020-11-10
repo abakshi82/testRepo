@@ -1,0 +1,20 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="global" >
+    <lightning:omniToolkitAPI aura:id="omniToolkit" />
+
+    <aura:attribute name="emailCaseRecord" type="Object"/>
+    <aura:attribute name="selectedRecord" type="Object"/>
+
+    <force:recordData aura:id="recordLoader"
+                      recordId="{!v.recordId}"
+                      fields="CaseNumber, OwnerId"
+                      targetFields="{!v.emailCaseRecord}"
+                      targetError="{!v.recordLoadError}"/>
+    <lightning:card title="{!$Label.c.Omni_EmailCaseMerge_Title}">
+        <aura:set attribute="actions">
+            <c:Omni_CloseWorkMergeCaseButton mergeCaseRecord = "{!v.emailCaseRecord}" masterCaseRecord = '{!v.selectedRecord}'/>
+        </aura:set>
+        <div class="slds-p-horizontal_small">
+            <c:Omni_ClaimSearch aura:id="claimSearch" selectedRecord="{!v.selectedRecord}" hasMissingClaimError="{!v.hasMissingClaimError}" />
+        </div>
+    </lightning:card>
+</aura:component>

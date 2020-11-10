@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Configuration values for email processing</description>
+    <label>Email Processing Config</label>
+    <pluralLabel>Email Processing Configs</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

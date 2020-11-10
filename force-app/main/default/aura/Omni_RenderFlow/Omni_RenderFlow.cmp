@@ -1,0 +1,64 @@
+<aura:component description="Omni_RenderFlow" implements="lightning:isUrlAddressable">
+    <aura:attribute name="currentStage" type="String" />
+    <aura:attribute name="claimId" type="String" access="Global" />
+
+    <!--<aura:attribute name="roleCaseSelected" type="Case" />-->
+    <aura:attribute name="allRolesSelected" type="Case[]" />
+    <aura:attribute name="allRoleIdsSelected" type="String[]" />
+    <aura:attribute name="allEmailsSelected" type="String[]" />
+    <aura:attribute name="allCCRolesSelected" type="Case[]" />
+    <aura:attribute name="allCCRoleIdsSelected" type="String[]" />
+    <aura:attribute name="allCCEmailsSelected" type="String[]" />
+    <aura:attribute name="exposureCaseSelected" type="Case" />
+    <aura:attribute name="activeSections" type="String[]" />
+    <!--<aura:attribute name="CCEmails" type="String[]" />-->
+    <aura:attribute name="manualRoleEmails" type="String[]" />
+    <aura:attribute name="manualCCRoleEmails" type="String[]" />
+    <aura:attribute name="emailRolesValid" type="Boolean" default="false" />
+    <aura:attribute name="templateName" type="String" />
+    <aura:attribute name="fileNames" type="String[]" />
+
+    <aura:handler name="roleEventFired" event="c:Omni_RoleSelectedEvent" action="{!c.populateSelectedRole}" />
+    <aura:handler name="exposureSelectedEvent" event="c:Omni_ExposureSelectedEvent" action="{!c.populateSelectedExposure}" />
+    <aura:handler name="flowStageEvent" event="c:Omni_FlowStagesEvent" action="{!c.updatePath}" />
+    <!--<aura:handler name="CCEmailsEvent" event="c:Omni_AdhocCCEmailsEvent" action="{!c.populateCCEmails}" />-->
+    <aura:handler name="ManualEmailsEvent" event="c:Omni_AdhocManualEmailEvent" action="{!c.populateManualEmails}" />
+    <aura:handler name="templateSelectedEvent" event="c:Omni_AdhocEmailTemplateSelectedEvent" action="{!c.populateEmailTemplate}" />
+    <aura:handler name="filesSelectedEvent" event="c:Omni_AdhocFilesSelectedEvent" action="{!c.populateFileNames}" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <aura:registerEvent name="NavigationStatusEvent" type="c:Omni_Adhoc_ChangeNavigationStatus" />
+
+    <!--REgister events that pass all primary and CC emails to the container which registers emails in the flow-->
+    <aura:registerEvent name="allRolesEvent" type="c:Omni_SelectedRolesEvent" />
+    <aura:registerEvent name="allManualEmailsEvent" type="c:Omni_Adhoc_AllManualEmailsEvent" />
+
+    <lightning:overlayLibrary aura:id="overlayLib" />
+
+    <div class="slds-modal__content">
+        <lightning:layout multipleRows="true">
+            <lightning:layoutItem size="12" padding="around-small">
+                <c:Omni_FlowStages currentStage="{!v.currentStage}" />
+            </lightning:layoutItem>
+            <ui:scrollerWrapper class="sWrapMain">
+                <lightning:layoutItem size="12" padding="around-small">
+                    <lightning:layout>
+                        <lightning:layoutItem size="3" padding="around-small">
+                            <c:Omni_AdhocEmailSummary allRoles="{!v.allRolesSelected}" exposure="{!v.exposureCaseSelected}" manualRoleEmails="{!v.manualRoleEmails}" emailTemplate="{!v.templateName}" fileNames="{!v.fileNames}" allCCRoles="{!v.allCCRolesSelected}" manualCCRoleEmails="{!v.manualCCRoleEmails}"
+                            />
+                        </lightning:layoutItem>
+                        <lightning:layoutItem size="9">
+                            <lightning:flow aura:id="flowRenderer" />
+                        </lightning:layoutItem>
+                    </lightning:layout>
+                </lightning:layoutItem>
+                <lightning:layoutItem size="12" padding="around-small">
+                    <div style="height:20px">
+                    </div>
+                </lightning:layoutItem>
+            </ui:scrollerWrapper>
+        </lightning:layout>
+    </div>
+
+</aura:component>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Exposure_For_Role__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <externalId>false</externalId>
+    <label>Exposure For Role</label>
+    <referenceTo>Case</referenceTo>
+    <relationshipLabel>LiveMessages (Exposure For Role)</relationshipLabel>
+    <relationshipName>LiveMessages1</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

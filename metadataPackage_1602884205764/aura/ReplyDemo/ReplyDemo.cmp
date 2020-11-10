@@ -1,0 +1,18 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,lightning:actionOverride,force:lightningQuickAction" access="global" controller="DemoReply">
+    <lightning:quickActionAPI aura:id="quickActionAPI" />
+    <lightning:workspaceAPI aura:id="workspace" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <aura:attribute name="email" type="EmailMessage" access="global" />
+    <aura:attribute name="claimNumber" type="String" access="global" />
+    <aura:attribute name="claimId" type="String" access="global" />
+    <aura:attribute name="exposure" type="Case" access="global" />
+    <aura:attribute name="exposureType" type="String" access="global" />
+    <aura:attribute name="FromAddress" type="String" access="global" />
+    <aura:attribute name="CcAddress" type="String[]" access="global" />
+    <aura:attribute name="ToAddress" type="String[]" access="global" />
+     <aura:attribute name="HtmlBody" type="String" access="global" />
+
+
+</aura:component>

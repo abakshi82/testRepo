@@ -1,0 +1,22 @@
+<aura:component controller="Omni_Aura_MessagingSessionController">
+
+    <!--declare attributes-->
+    <aura:attribute name="oRecord" type="sObject" />
+    <aura:attribute name="sessionId" type="String" />
+    <aura:attribute name="IconName" type="string" default="standard:case" />
+    <aura:attribute name="listOfSearchRecords" type="List" description="Use,for store the list of search records which returns from apex class" />
+    <aura:attribute name="selectedRecord" type="sObject" default="{}" description="Use,for store SELECTED sObject Record" />
+
+    <!--declare events hendlers-->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler name="oneRecordEvent" event="c:Omni_SelectedClaimEvent" action="{!c.handleComponentEvent}" />
+
+    <aura:registerEvent name="oneRecordEvent" type="c:Omni_SelectedClaimEvent" />
+    <aura:iteration items="{!v.listOfSearchRecords}" var="singleRec">
+        <br />
+        <c:Omni_ClaimSearchLookupResults oRecord="{!singleRec}" IconName="{!v.IconName}" />
+    </aura:iteration>
+
+
+
+</aura:component>

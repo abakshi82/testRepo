@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Is_New_Template__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>When se tot true, user requests to create new template. When false, request is for existing template</description>
+    <externalId>false</externalId>
+    <label>Is New Template</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

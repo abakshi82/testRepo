@@ -1,0 +1,25 @@
+.THIS.selected {
+	border: 1px solid rgb(211,211,211);
+    border-radius: 5px;
+    box-shadow: 3px 3px rgb(211,211,211);
+}
+
+.THIS.tile {
+	width: 100%;
+	height: 100%;
+	padding: 3px;
+}
+
+.THIS.tile:hover {
+	border: 1px solid rgb(211,211,211);
+    border-radius: 5px;
+    box-shadow: 3px 3px rgb(211,211,211);
+}
+
+.THIS .innertile {
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	width: 100%;
+	height: 100%;
+}

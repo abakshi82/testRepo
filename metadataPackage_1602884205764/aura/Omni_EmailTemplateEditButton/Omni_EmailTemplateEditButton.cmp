@@ -1,0 +1,13 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickActionWithoutHeader" access="global" >
+
+    <aura:attribute name="templateRequest"  type="Template_Request__c"/>
+
+    <force:recordData aura:id="recordLoader" 
+                      recordId="{!v.recordId}" 
+                      fields="Email_Template_Id__c,Is_New_Template__c" 
+                      targetFields="{!v.templateRequest}"
+                       />
+  
+    <lightning:button  variant="brand" label="{#$Label.c.Omni_EmailtemplateEditButton_Edit}" title="Neutral action" onclick="{! c.handleClickEdit }"/>
+
+</aura:component>

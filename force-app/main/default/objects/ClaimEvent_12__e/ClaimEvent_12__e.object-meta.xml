@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Omni Claim Event Parallel Bus</description>
+    <eventType>HighVolume</eventType>
+    <label>Claim Event 12</label>
+    <pluralLabel>Claim Event 12</pluralLabel>
+    <publishBehavior>PublishImmediately</publishBehavior>
+</CustomObject>

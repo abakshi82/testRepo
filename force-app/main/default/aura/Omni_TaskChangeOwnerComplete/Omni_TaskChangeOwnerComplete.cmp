@@ -1,0 +1,6 @@
+<aura:component controller="Omni_TaskChangeOwner" implements="force:lightningQuickAction,force:hasRecordId">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:html tag="style">
+        .slds-modal { visibility: hidden; display: none; } .slds-backdrop{ display: none; }
+    </aura:html>
+</aura:component>

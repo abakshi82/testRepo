@@ -1,0 +1,6 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickActionWithoutHeader" access="global" controller="Omni_Aura_SMSStartSessionController">
+
+    <!-- Send SMS Button -->
+    <lightning:button variant="brand" label="Send SMS" title="Send SMS" onclick="{! c.handleClickStart }" />
+
+</aura:component>

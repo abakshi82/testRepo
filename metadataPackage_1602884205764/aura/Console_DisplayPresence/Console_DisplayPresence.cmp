@@ -1,0 +1,59 @@
+<aura:component
+  implements="lightning:utilityItem"
+  controller="Console_PresenceController"
+>
+  <!-- Standard Service Console Utility Bar setup -->
+  <lightning:utilityBarAPI aura:id="utilitybar" />
+  <aura:attribute name="supportsPopOut" type="Boolean" default="false" />
+
+  <!-- Application State Attributes -->
+  <aura:attribute name="usersPresence" type="Object[]" default="null" description="List of UserPresence entries" />
+  <aura:attribute name="isCalloutInProgress" type="Boolean" default="false" description="Reprensents whether the component is waiting on a callout's response. Controls the screen locker display" />
+  <aura:attribute name="interval" type="Integer" description="Reference to the data polling interval that's initiated on init"/>
+
+  <!-- Event Handlers -->
+  <aura:handler name="init" value="{!this}" action="{!c.initialize}" />
+
+
+<!-- Callout Screen Spinner / Locker -->
+  <aura:if isTrue="{! v.isCalloutInProgress }">
+    <div>
+      <lightning:spinner alternativeText="Loading" size="medium" />
+    </div>
+  </aura:if>
+
+  <!-- Content -->
+  <table class="slds-table slds-no-row-hover slds-table_bordered">
+    <thead>
+      <tr>
+        <th>
+          Name
+        </th>
+        <th>
+          Availability
+        </th>
+        <th>
+          Status
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <aura:iteration items="{!v.usersPresence}" var="presence">
+        <tr>
+          <td>
+            {!presence.name}
+          </td>
+          <td>
+            {!presence.availableCapacityPercentage}%
+          </td>
+          <td>
+            <div
+              title="{! presence.label }"
+              class="{! 'presenceIndicator ' + presence.status }"
+            />
+          </td>
+        </tr>
+      </aura:iteration>
+    </tbody>
+  </table>
+</aura:component>

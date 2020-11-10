@@ -1,0 +1,4 @@
+<aura:event type="APPLICATION">
+  <aura:attribute name="sDocumentId" type="String"/>
+  <aura:attribute name="sContentDocumentName" type="String"/>
+</aura:event>

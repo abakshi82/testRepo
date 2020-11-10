@@ -1,0 +1,75 @@
+<aura:component controller="Omni_AdhocFlowController">
+    <aura:attribute name="activeSections" type="String[]" default="['Recipient', 'CC Emails', 'Exposure', 'Email Template', 'Files']" access="public" />
+    <aura:attribute name="activeRecipientSubsections" type="String[]" default="['Recipient Roles', 'Recipient Manuals']" access="public" />
+    <aura:attribute name="activeCCSubsections" type="String[]" default="['CC Roles', 'CC Manuals']" access="public" />
+    <aura:attribute name="role" type="Case" access="public" />
+    <aura:attribute name="allRoles" type="Case[]" access="public" />
+    <aura:attribute name="manualRoleEmails" type="String[]" access="public" />
+    <aura:attribute name="allCCRoles" type="Case[]" access="public" />
+    <aura:attribute name="manualCCRoleEmails" type="String[]" access="public" />
+    <aura:attribute name="exposure" type="Case" access="public" />
+    <aura:attribute name="CCEmails" type="String[]" access="public" />
+    <aura:attribute name="emailTemplate" type="String" access="public" />
+    <aura:attribute name="fileNames" type="String[]" access="public" />
+
+    <div style="padding-top: 15px;">
+        <h3 class="slds-page-header__title slds-m-right_small slds-align-middle slds-truncate" title="Summary">{!$Label.c.Omni_Adhoc_EmailSummary}</h3>
+    </div>
+    <lightning:accordion allowMultipleSectionsOpen="true" activeSectionName="{! v.activeSections }">
+
+        <lightning:accordionSection label="{!$Label.c.Omni_Adhoc_PrimaryRecipient}" name="Recipient">
+            <lightning:accordion allowMultipleSectionsOpen="true" activeSectionName="{! v.activeRecipientSubsections }">
+                <lightning:accordionSection label="{!$Label.c.Omni_Adhoc_PrimaryRecipient}" name="Recipient Roles">
+                    <aura:if isTrue="{!v.allRoles}">
+                        <aura:iteration items="{!v.allRoles}" var="role">
+                            <lightning:formattedText value="{!role.Email_Address_for_Role__c}" /><br/>
+                        </aura:iteration>
+                    </aura:if>
+                </lightning:accordionSection>
+                <lightning:accordionSection label="{!$Label.c.Omni_Adhoc_ManualEntry}" name="Recipient Manuals">
+                    <aura:iteration items="{!v.manualRoleEmails}" var="email">
+                        <lightning:formattedText value="{!email}" /><br/>
+                    </aura:iteration>
+                </lightning:accordionSection>
+            </lightning:accordion>
+        </lightning:accordionSection>
+
+        <lightning:accordionSection label="{!$Label.c.Omni_Adhoc_CCdRecipients}" name="CC Emails">
+            <lightning:accordion allowMultipleSectionsOpen="true" activeSectionName="{! v.activeCCSubsections }">
+                <lightning:accordionSection label="{!$Label.c.Omni_Adhoc_CCdRecipients}" name="CC Roles">
+                    <aura:if isTrue="{!v.allCCRoles}">
+                        <aura:iteration items="{!v.allCCRoles}" var="ccrole">
+                            <lightning:formattedText value="{!ccrole.Email_Address_for_Role__c}" /><br/>
+                        </aura:iteration>
+                    </aura:if>
+                </lightning:accordionSection>
+                <lightning:accordionSection label="{!$Label.c.Omni_Adhoc_ManualEntry}" name="CC Manuals">
+                    <aura:iteration items="{!v.manualCCRoleEmails}" var="ccemail">
+                        <lightning:formattedText value="{!ccemail}" /><br/>
+                    </aura:iteration>
+                </lightning:accordionSection>
+            </lightning:accordion>
+        </lightning:accordionSection>
+
+        <lightning:accordionSection label="{!$Label.c.Omni_Adhoc_Exposure}" name="Exposure">
+            <aura:if isTrue="{!v.exposure}">
+                <c:Omni_ExposureRecordComponent exposure="{!v.exposure}" exposureId="{!v.exposure.Id}" selected="false" />
+            </aura:if>
+        </lightning:accordionSection>
+
+        <lightning:accordionSection label="{!$Label.c.Omni_Adhoc_EmailTemplate}" name="Email Template">
+            <p class="slds-truncate">
+                <lightning:formattedText value="{!v.emailTemplate}" />
+            </p>
+        </lightning:accordionSection>
+
+        <lightning:accordionSection label="{!$Label.c.Omni_Adhoc_Files}" name="Files">
+            <p class="slds-truncate">
+                <aura:iteration items="{!v.fileNames}" var="fileName">
+                    <lightning:formattedText value="{!fileName}" /><br/>
+                </aura:iteration>
+            </p>
+        </lightning:accordionSection>
+
+    </lightning:accordion>
+</aura:component>

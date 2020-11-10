@@ -1,0 +1,91 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes,lightning:isUrlAddressable,flexipage:availableForAllPageTypes" controller="Omni_Aura_SurveyFormController" access="global">
+    <ltng:require scripts="{!$Resource.GlobalVars}" afterScriptsLoaded="{!c.persistGetParams}" />
+    <!-- Attributes -->
+    <aura:attribute name="comment" type="String" access="global" />
+    <aura:attribute name="face" type="String" access="global" />
+    <aura:attribute name="claimId" type="String" access="global" />
+    <aura:attribute name="exposureId" type="String" access="global" />
+    <aura:attribute name="time" type="String" access="global" />
+    <aura:attribute name="pig_en" type="String" access="global" />
+    <aura:attribute name="pig_fr" type="String" access="global" />
+    <aura:attribute name="logo_url" type="String" access="global" />
+    <aura:attribute name="language" type="String" access="global" />
+    <aura:attribute name="isAlreadySubmitted" type="Boolean" access="global" default="false" />
+    <aura:attribute name="showSpinner" type="Boolean" access="global" default="true" />
+    <aura:attribute name="showCommentForm" type="Boolean" access="global" default="true" />
+    <aura:attribute name="surveyId" type="String" access="global" />
+
+    <aura:attribute name="LABEL_CannotRespondToSurveyAgain" type="String" access="global" />
+    <aura:attribute name="LABEL_HeaderMessage" type="String" access="global" />
+    <aura:attribute name="LABEL_Good_Description" type="String" access="global" />
+    <aura:attribute name="LABEL_Soso_Description" type="String" access="global" />
+    <aura:attribute name="LABEL_Awful_Description" type="String" access="global" />
+    <aura:attribute name="LABEL_Thank_You" type="String" access="global" />
+    <aura:attribute name="LABEL_Submit" type="String" access="global" />
+
+
+    <!-- Handlers -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <div>
+        <span class="header_large">{!v.LABEL_HeaderMessage}  </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span> <img src="{!v.logo_url}" /></span>
+    </div>
+    <br />
+    <!-- Show spinner before either section finishes loading -->
+    <aura:if isTrue="{!v.showSpinner}">
+        <div class="exampleHolder">
+            <lightning:spinner alternativeText="Loading" size="large" />
+        </div>
+        <!-- User cannot submit the same survey multiple times-->
+        <aura:set attribute="else">
+            <div class="slds-grid slds-wrap">
+                <div class="slds-col slds-size_8-of-12">
+                    <aura:if isTrue="{!v.isAlreadySubmitted}">
+                        <span class="greeting">{!v.LABEL_CannotRespondToSurveyAgain}</span>
+                        <!-- Depending on the slimely that user clicks, display different paragraph -->
+                        <aura:set attribute="else">
+                            <!-- Green face -->
+                            <aura:if isTrue="{!v.face == 'green'}">
+                                <div style="box">
+                                    <span>{!v.LABEL_Good_Description}</span>
+                                </div>
+                                <aura:set attribute="else">
+                                    <!-- Yellow face -->
+                                    <aura:if isTrue="{!v.face == 'yellow'}">
+                                        <div style="box">
+                                            <span>{!v.LABEL_Soso_Description}</span>
+                                        </div>
+                                        <aura:set attribute="else">
+                                            <!-- Red face -->
+                                            <aura:if isTrue="{!v.face == 'red'}">
+                                                <div style="box">
+                                                    <span>{!v.LABEL_Awful_Description}</span>
+                                                </div>
+                                            </aura:if>
+                                        </aura:set>
+                                    </aura:if>
+                                </aura:set>
+                            </aura:if>
+
+                            <aura:if isTrue="{!v.showCommentForm}">
+                                <div class="slds-form-element">
+                                    <label class="slds-form-element__label" for="textarea-id-01"></label>
+                                    <div class="slds-form-element__control">
+                                        <ui:inputTextarea aura:id="comment-box" class="slds-textarea" value="{!v.comment}" placeholder="">
+                                        </ui:inputTextarea>
+                                    </div>
+                                </div>
+                                <lightning:button variant="brand" label="{!v.LABEL_Submit}" onclick="{! c.addComment }" />
+                                <aura:set attribute="else">
+                                    <br />
+                                    <span class="greeting">{!v.LABEL_Thank_You}</span>
+                                </aura:set>
+                            </aura:if>
+                        </aura:set>
+                    </aura:if>
+                </div>
+            </div>
+        </aura:set>
+    </aura:if>
+
+</aura:component>

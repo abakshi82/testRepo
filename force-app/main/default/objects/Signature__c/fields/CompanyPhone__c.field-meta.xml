@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CompanyPhone__c</fullName>
+    <description>build company phone based on PIG and Province of Issuance</description>
+    <externalId>false</externalId>
+    <formula>IF
+(
+	OR(PIG_TypeCode__c=&quot;intact&quot;, PIG_TypeCode__c=&quot;nordic&quot;, PIG_TypeCode__c=&quot;novex&quot;), 
+	CASE(ProvinceOfIssuanceId__c,
+			&quot;ON&quot;,$CustomMetadata.PhoneNumberConfig__mdt.ON_intact.PhoneNumber__c,
+			&quot;QC&quot;,$CustomMetadata.PhoneNumberConfig__mdt.QC_intact.PhoneNumber__c,
+			&quot;AB&quot;,$CustomMetadata.PhoneNumberConfig__mdt.AB_intact.PhoneNumber__c,
+			&quot;BC&quot;,$CustomMetadata.PhoneNumberConfig__mdt.BC_intact.PhoneNumber__c,
+			&quot;MB&quot;,$CustomMetadata.PhoneNumberConfig__mdt.MB_intact.PhoneNumber__c,
+			&quot;NT&quot;,$CustomMetadata.PhoneNumberConfig__mdt.NT_intact.PhoneNumber__c,
+			&quot;NU&quot;,$CustomMetadata.PhoneNumberConfig__mdt.NU_intact.PhoneNumber__c,
+			&quot;SK&quot;,$CustomMetadata.PhoneNumberConfig__mdt.SK_intact.PhoneNumber__c,
+			&quot;YT&quot;,$CustomMetadata.PhoneNumberConfig__mdt.YT_intact.PhoneNumber__c,
+			&quot;NB&quot;,$CustomMetadata.PhoneNumberConfig__mdt.NB_intact.PhoneNumber__c,
+			&quot;NL&quot;,$CustomMetadata.PhoneNumberConfig__mdt.NL_intact.PhoneNumber__c,
+			&quot;NS&quot;,$CustomMetadata.PhoneNumberConfig__mdt.NS_intact.PhoneNumber__c,
+			&quot;PE&quot;,$CustomMetadata.PhoneNumberConfig__mdt.PE_intact.PhoneNumber__c,
+			&quot;1800-999-999&quot;), 
+	
+IF(
+	PIG_TypeCode__c=&quot;belair&quot;, 
+	CASE(ProvinceOfIssuanceId__c,
+			&quot;ON&quot;,$CustomMetadata.PhoneNumberConfig__mdt.ON_belair.PhoneNumber__c,
+			&quot;QC&quot;,$CustomMetadata.PhoneNumberConfig__mdt.QC_belair.PhoneNumber__c,
+			&quot;AB&quot;,$CustomMetadata.PhoneNumberConfig__mdt.AB_belair.PhoneNumber__c,
+			&quot;BC&quot;,$CustomMetadata.PhoneNumberConfig__mdt.BC_belair.PhoneNumber__c,
+			&quot;MB&quot;,$CustomMetadata.PhoneNumberConfig__mdt.MB_belair.PhoneNumber__c,
+			&quot;NT&quot;,$CustomMetadata.PhoneNumberConfig__mdt.NT_belair.PhoneNumber__c,
+			&quot;NU&quot;,$CustomMetadata.PhoneNumberConfig__mdt.NU_belair.PhoneNumber__c,
+			&quot;SK&quot;,$CustomMetadata.PhoneNumberConfig__mdt.SK_belair.PhoneNumber__c,
+			&quot;YT&quot;,$CustomMetadata.PhoneNumberConfig__mdt.YT_belair.PhoneNumber__c,
+			&quot;NB&quot;,$CustomMetadata.PhoneNumberConfig__mdt.NB_belair.PhoneNumber__c,
+			&quot;NL&quot;,$CustomMetadata.PhoneNumberConfig__mdt.NL_belair.PhoneNumber__c,
+			&quot;NS&quot;,$CustomMetadata.PhoneNumberConfig__mdt.NS_belair.PhoneNumber__c,
+			&quot;PE&quot;,$CustomMetadata.PhoneNumberConfig__mdt.PE_belair.PhoneNumber__c,
+			&quot;1800-999-999&quot;), 
+	IF
+	(
+	PIG_TypeCode__c=&quot;jevco&quot;, 
+	CASE(ProvinceOfIssuanceId__c,
+		&quot;ON&quot;,$CustomMetadata.PhoneNumberConfig__mdt.ON_Jevco.PhoneNumber__c,
+			&quot;QC&quot;,$CustomMetadata.PhoneNumberConfig__mdt.QC_Jevco.PhoneNumber__c,
+			&quot;AB&quot;,$CustomMetadata.PhoneNumberConfig__mdt.AB_Jevco.PhoneNumber__c,
+			&quot;BC&quot;,$CustomMetadata.PhoneNumberConfig__mdt.BC_Jevco.PhoneNumber__c,
+			&quot;MB&quot;,$CustomMetadata.PhoneNumberConfig__mdt.MB_Jevco.PhoneNumber__c,
+			&quot;NT&quot;,$CustomMetadata.PhoneNumberConfig__mdt.NT_Jevco.PhoneNumber__c,
+			&quot;NU&quot;,$CustomMetadata.PhoneNumberConfig__mdt.NU_Jevco.PhoneNumber__c,
+			&quot;SK&quot;,$CustomMetadata.PhoneNumberConfig__mdt.SK_Jevco.PhoneNumber__c,
+			&quot;YT&quot;,$CustomMetadata.PhoneNumberConfig__mdt.YT_Jevco.PhoneNumber__c,
+			&quot;NB&quot;,$CustomMetadata.PhoneNumberConfig__mdt.NB_Jevco.PhoneNumber__c,
+			&quot;NL&quot;,$CustomMetadata.PhoneNumberConfig__mdt.NL_Jevco.PhoneNumber__c,
+			&quot;NS&quot;,$CustomMetadata.PhoneNumberConfig__mdt.NS_Jevco.PhoneNumber__c,
+			&quot;PE&quot;,$CustomMetadata.PhoneNumberConfig__mdt.PE_Jevco.PhoneNumber__c,		&quot;1800-999-999&quot;),  
+	
+	CompanyPhoneAdditional__c
+	)
+	)
+)</formula>
+    <label>Company Phone</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

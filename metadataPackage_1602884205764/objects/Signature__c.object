@@ -1,0 +1,537 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Template Signature</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>false</enableReports>
+    <enableSearch>false</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <label>Signature</label>
+    <nameField>
+        <encryptionScheme>None</encryptionScheme>
+        <label>Signature Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Signatures</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+    <fields>
+        <fullName>AdjusterAddress__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(Adjuster__r.State=&apos;NB&apos;, &apos;20 Hector Gate, Suite 200, Dartmouth, NS B3B 0K3&apos;,IF(ISBLANK(Adjuster__r.Street), &apos;&apos;, Adjuster__r.Street+&apos;, &apos;)+ IF(ISBLANK(Adjuster__r.City), &apos;&apos;, Adjuster__r.City+&apos;, &apos;)+IF(ISBLANK(Adjuster__r.State), &apos;&apos;, Adjuster__r.State+&apos;, &apos;)+IF(ISBLANK(Adjuster__r.PostalCode), &apos;&apos;, Adjuster__r.PostalCode))</formula>
+        <label>Adjuster Address</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AdjusterCity__c</fullName>
+        <externalId>false</externalId>
+        <formula>Adjuster__r.City</formula>
+        <label>Adjuster City</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AdjusterFax__c</fullName>
+        <externalId>false</externalId>
+        <formula>Adjuster__r.Fax</formula>
+        <label>Adjuster Fax</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AdjusterName__c</fullName>
+        <externalId>false</externalId>
+        <formula>Adjuster__r.FirstName + &apos; &apos; + Adjuster__r.LastName</formula>
+        <label>Adjuster Name</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AdjusterPhone__c</fullName>
+        <externalId>false</externalId>
+        <formula>Adjuster__r.Phone</formula>
+        <label>Adjuster Phone</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AdjusterPostalCode__c</fullName>
+        <externalId>false</externalId>
+        <formula>Adjuster__r.PostalCode</formula>
+        <label>Adjuster Postal Code</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AdjusterProvince__c</fullName>
+        <externalId>false</externalId>
+        <formula>Adjuster__r.State</formula>
+        <label>Adjuster Province</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AdjusterStreet__c</fullName>
+        <externalId>false</externalId>
+        <formula>Adjuster__r.Street</formula>
+        <label>Adjuster Street</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AdjusterTitle_FR__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(ProvinceOfIssuanceId__c=&apos;QC&apos;, Adjuster__r.Title_1_FR__c ,&apos;Claims Representative&apos;)+BR()+
+IF(ProvinceOfIssuanceId__c=&apos;QC&apos;&amp;&amp;NOT(ISBLANK(Adjuster__r.Title_2_FR__c)),Adjuster__r.Title_2_FR__c,&apos;&apos;)+
+IF(ProvinceOfIssuanceId__c=&apos;QC&apos;&amp;&amp;NOT(ISBLANK(Adjuster__r.Title_2_FR__c)),BR(),&apos;&apos;)</formula>
+        <label>Adjuster Title FR</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AdjusterTitle__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(ProvinceOfIssuanceId__c=&apos;QC&apos;,Adjuster__r.Title_1__c,&apos;Claims Representative&apos;)+BR()+
+IF(ProvinceOfIssuanceId__c=&apos;QC&apos;&amp;&amp;NOT(ISBLANK(Adjuster__r.Title_2__c)),Adjuster__r.Title_2__c,&apos;&apos;)+ 
+IF(ProvinceOfIssuanceId__c=&apos;QC&apos;&amp;&amp;NOT(ISBLANK(Adjuster__r.Title_2__c)),BR(),&apos;&apos;)</formula>
+        <label>Adjuster Title</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Adjuster__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Adjuster</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>TemplateSignaturesByAdjuster</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>CompanyPhoneAdditional__c</fullName>
+        <description>additional logic to build company phone based on PIG and Province of Issuance</description>
+        <externalId>false</externalId>
+        <formula>IF(
+	PIG_TypeCode__c=&quot;belairBNA&quot;, 
+	CASE(ProvinceOfIssuanceId__c,
+			&quot;ON&quot;,$CustomMetadata.PhoneNumberConfig__mdt.ON_belairBNA.PhoneNumber__c,
+			&quot;QC&quot;,$CustomMetadata.PhoneNumberConfig__mdt.QC_belairBNA.PhoneNumber__c,
+			&quot;AB&quot;,$CustomMetadata.PhoneNumberConfig__mdt.AB_belairBNA.PhoneNumber__c,
+			&quot;BC&quot;,$CustomMetadata.PhoneNumberConfig__mdt.BC_belairBNA.PhoneNumber__c,
+			&quot;MB&quot;,$CustomMetadata.PhoneNumberConfig__mdt.MB_belairBNA.PhoneNumber__c,
+			&quot;NT&quot;,$CustomMetadata.PhoneNumberConfig__mdt.NT_belairBNA.PhoneNumber__c,
+			&quot;NU&quot;,$CustomMetadata.PhoneNumberConfig__mdt.NU_belairBNA.PhoneNumber__c,
+			&quot;SK&quot;,$CustomMetadata.PhoneNumberConfig__mdt.SK_belairBNA.PhoneNumber__c,
+			&quot;YT&quot;,$CustomMetadata.PhoneNumberConfig__mdt.YT_belairBNA.PhoneNumber__c,
+			&quot;NB&quot;,$CustomMetadata.PhoneNumberConfig__mdt.NB_belairBNA.PhoneNumber__c,
+			&quot;NL&quot;,$CustomMetadata.PhoneNumberConfig__mdt.NL_belairBNA.PhoneNumber__c,
+			&quot;NS&quot;,$CustomMetadata.PhoneNumberConfig__mdt.NS_belairBNA.PhoneNumber__c,
+			&quot;PE&quot;,$CustomMetadata.PhoneNumberConfig__mdt.PE_belairBNA.PhoneNumber__c,
+			&quot;1800-999-999&quot;), 
+	IF
+	(
+	PIG_TypeCode__c=&quot;trafalgar&quot;, 
+	CASE(ProvinceOfIssuanceId__c,
+			&quot;ON&quot;,$CustomMetadata.PhoneNumberConfig__mdt.ON_trafalgar.PhoneNumber__c,
+			&quot;QC&quot;,$CustomMetadata.PhoneNumberConfig__mdt.QC_trafalgar.PhoneNumber__c,
+			&quot;AB&quot;,$CustomMetadata.PhoneNumberConfig__mdt.AB_trafalgar.PhoneNumber__c,
+			&quot;BC&quot;,$CustomMetadata.PhoneNumberConfig__mdt.BC_trafalgar.PhoneNumber__c,
+			&quot;MB&quot;,$CustomMetadata.PhoneNumberConfig__mdt.MB_trafalgar.PhoneNumber__c,
+			&quot;NT&quot;,$CustomMetadata.PhoneNumberConfig__mdt.NT_trafalgar.PhoneNumber__c,
+			&quot;NU&quot;,$CustomMetadata.PhoneNumberConfig__mdt.NU_trafalgar.PhoneNumber__c,
+			&quot;SK&quot;,$CustomMetadata.PhoneNumberConfig__mdt.SK_trafalgar.PhoneNumber__c,
+			&quot;YT&quot;,$CustomMetadata.PhoneNumberConfig__mdt.YT_trafalgar.PhoneNumber__c,
+			&quot;NB&quot;,$CustomMetadata.PhoneNumberConfig__mdt.NB_trafalgar.PhoneNumber__c,
+			&quot;NL&quot;,$CustomMetadata.PhoneNumberConfig__mdt.NL_trafalgar.PhoneNumber__c,
+			&quot;NS&quot;,$CustomMetadata.PhoneNumberConfig__mdt.NS_trafalgar.PhoneNumber__c,
+			&quot;PE&quot;,$CustomMetadata.PhoneNumberConfig__mdt.PE_trafalgar.PhoneNumber__c,
+			&quot;1800-999-999&quot;),  
+	
+	&quot;1800-999-999&quot;
+	)
+	)</formula>
+        <label>Company Phone Additional</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CompanyPhone__c</fullName>
+        <description>build company phone based on PIG and Province of Issuance</description>
+        <externalId>false</externalId>
+        <formula>IF
+(
+	OR(PIG_TypeCode__c=&quot;intact&quot;, PIG_TypeCode__c=&quot;nordic&quot;, PIG_TypeCode__c=&quot;novex&quot;), 
+	CASE(ProvinceOfIssuanceId__c,
+			&quot;ON&quot;,$CustomMetadata.PhoneNumberConfig__mdt.ON_intact.PhoneNumber__c,
+			&quot;QC&quot;,$CustomMetadata.PhoneNumberConfig__mdt.QC_intact.PhoneNumber__c,
+			&quot;AB&quot;,$CustomMetadata.PhoneNumberConfig__mdt.AB_intact.PhoneNumber__c,
+			&quot;BC&quot;,$CustomMetadata.PhoneNumberConfig__mdt.BC_intact.PhoneNumber__c,
+			&quot;MB&quot;,$CustomMetadata.PhoneNumberConfig__mdt.MB_intact.PhoneNumber__c,
+			&quot;NT&quot;,$CustomMetadata.PhoneNumberConfig__mdt.NT_intact.PhoneNumber__c,
+			&quot;NU&quot;,$CustomMetadata.PhoneNumberConfig__mdt.NU_intact.PhoneNumber__c,
+			&quot;SK&quot;,$CustomMetadata.PhoneNumberConfig__mdt.SK_intact.PhoneNumber__c,
+			&quot;YT&quot;,$CustomMetadata.PhoneNumberConfig__mdt.YT_intact.PhoneNumber__c,
+			&quot;NB&quot;,$CustomMetadata.PhoneNumberConfig__mdt.NB_intact.PhoneNumber__c,
+			&quot;NL&quot;,$CustomMetadata.PhoneNumberConfig__mdt.NL_intact.PhoneNumber__c,
+			&quot;NS&quot;,$CustomMetadata.PhoneNumberConfig__mdt.NS_intact.PhoneNumber__c,
+			&quot;PE&quot;,$CustomMetadata.PhoneNumberConfig__mdt.PE_intact.PhoneNumber__c,
+			&quot;1800-999-999&quot;), 
+	
+IF(
+	PIG_TypeCode__c=&quot;belair&quot;, 
+	CASE(ProvinceOfIssuanceId__c,
+			&quot;ON&quot;,$CustomMetadata.PhoneNumberConfig__mdt.ON_belair.PhoneNumber__c,
+			&quot;QC&quot;,$CustomMetadata.PhoneNumberConfig__mdt.QC_belair.PhoneNumber__c,
+			&quot;AB&quot;,$CustomMetadata.PhoneNumberConfig__mdt.AB_belair.PhoneNumber__c,
+			&quot;BC&quot;,$CustomMetadata.PhoneNumberConfig__mdt.BC_belair.PhoneNumber__c,
+			&quot;MB&quot;,$CustomMetadata.PhoneNumberConfig__mdt.MB_belair.PhoneNumber__c,
+			&quot;NT&quot;,$CustomMetadata.PhoneNumberConfig__mdt.NT_belair.PhoneNumber__c,
+			&quot;NU&quot;,$CustomMetadata.PhoneNumberConfig__mdt.NU_belair.PhoneNumber__c,
+			&quot;SK&quot;,$CustomMetadata.PhoneNumberConfig__mdt.SK_belair.PhoneNumber__c,
+			&quot;YT&quot;,$CustomMetadata.PhoneNumberConfig__mdt.YT_belair.PhoneNumber__c,
+			&quot;NB&quot;,$CustomMetadata.PhoneNumberConfig__mdt.NB_belair.PhoneNumber__c,
+			&quot;NL&quot;,$CustomMetadata.PhoneNumberConfig__mdt.NL_belair.PhoneNumber__c,
+			&quot;NS&quot;,$CustomMetadata.PhoneNumberConfig__mdt.NS_belair.PhoneNumber__c,
+			&quot;PE&quot;,$CustomMetadata.PhoneNumberConfig__mdt.PE_belair.PhoneNumber__c,
+			&quot;1800-999-999&quot;), 
+	IF
+	(
+	PIG_TypeCode__c=&quot;jevco&quot;, 
+	CASE(ProvinceOfIssuanceId__c,
+		&quot;ON&quot;,$CustomMetadata.PhoneNumberConfig__mdt.ON_Jevco.PhoneNumber__c,
+			&quot;QC&quot;,$CustomMetadata.PhoneNumberConfig__mdt.QC_Jevco.PhoneNumber__c,
+			&quot;AB&quot;,$CustomMetadata.PhoneNumberConfig__mdt.AB_Jevco.PhoneNumber__c,
+			&quot;BC&quot;,$CustomMetadata.PhoneNumberConfig__mdt.BC_Jevco.PhoneNumber__c,
+			&quot;MB&quot;,$CustomMetadata.PhoneNumberConfig__mdt.MB_Jevco.PhoneNumber__c,
+			&quot;NT&quot;,$CustomMetadata.PhoneNumberConfig__mdt.NT_Jevco.PhoneNumber__c,
+			&quot;NU&quot;,$CustomMetadata.PhoneNumberConfig__mdt.NU_Jevco.PhoneNumber__c,
+			&quot;SK&quot;,$CustomMetadata.PhoneNumberConfig__mdt.SK_Jevco.PhoneNumber__c,
+			&quot;YT&quot;,$CustomMetadata.PhoneNumberConfig__mdt.YT_Jevco.PhoneNumber__c,
+			&quot;NB&quot;,$CustomMetadata.PhoneNumberConfig__mdt.NB_Jevco.PhoneNumber__c,
+			&quot;NL&quot;,$CustomMetadata.PhoneNumberConfig__mdt.NL_Jevco.PhoneNumber__c,
+			&quot;NS&quot;,$CustomMetadata.PhoneNumberConfig__mdt.NS_Jevco.PhoneNumber__c,
+			&quot;PE&quot;,$CustomMetadata.PhoneNumberConfig__mdt.PE_Jevco.PhoneNumber__c,		&quot;1800-999-999&quot;),  
+	
+	CompanyPhoneAdditional__c
+	)
+	)
+)</formula>
+        <label>Company Phone</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>DEA_Email__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>DEA Email</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PhoneNumberType__c</fullName>
+        <externalId>false</externalId>
+        <label>Phone Number Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Company</fullName>
+                    <default>true</default>
+                    <label>Company</label>
+                </value>
+                <value>
+                    <fullName>Adjuster</fullName>
+                    <default>false</default>
+                    <label>Adjuster</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>PIG_Name_EN__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>PIG Name EN</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PIG_Name_FR__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>PIG Name FR</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PIG_TypeCode__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>PIG TypeCode</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ProvinceOfIssuanceId__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Province of Issuance Id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>RoleId__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>true</externalId>
+        <label>Role Id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Role__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Role</label>
+        <referenceTo>Case</referenceTo>
+        <relationshipLabel>Signatures By Role</relationshipLabel>
+        <relationshipName>SignaturesPerRole</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>SignatureAdditionalInformation__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(ISPICKVAL(PhoneNumberType__c,&apos;Company&apos;),&apos;Telephone: &apos; + CompanyPhone__c, &apos;Telephone: &apos; + AdjusterPhone__c)+BR()+
+&apos;Email: &apos;+DEA_Email__c</formula>
+        <label>Signature Additional Information</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SignatureEN__c</fullName>
+        <externalId>false</externalId>
+        <formula>AdjusterTitle__c +
+PIG_Name_EN__c + BR() +
+AdjusterAddress__c</formula>
+        <label>Signature EN</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Signature_FR__c</fullName>
+        <externalId>false</externalId>
+        <formula>AdjusterTitle_FR__c +
+PIG_Name_EN__c + BR() +
+AdjusterAddress__c</formula>
+        <label>Signature FR</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+</CustomObject>

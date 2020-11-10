@@ -1,0 +1,57 @@
+<aura:component implements="lightning:availableForFlowScreens" controller="Omni_AdhocFlowController">
+    <aura:attribute name="userId" type="String" />
+    <aura:attribute name="filesList" type="list" />
+    <aura:attribute name="claimNumber" type="String" access="global" />
+    <aura:attribute name="exposureType" type="String" access="global" />
+    <aura:attribute name="jsonArray" type="Object[]" />
+    <aura:attribute name="isSelectAll" type="boolean" default="false" />
+    <aura:attribute name="selectedIds" type="String" access="global" />
+    <aura:attribute name="fileNames" type="String[]" access="global" />
+
+    <aura:registerEvent name="flowStageEvent" type="c:Omni_FlowStagesEvent" />
+    <aura:registerEvent name="filesSelectedEvent" type="c:Omni_AdhocFilesSelectedEvent" />
+
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}" />
+    <aura:handler name="fileRetrievedEvent" event="c:Omni_EcmFilesListEvent" action="{!c.addRetrievedFile}" />
+
+    <!--FInish attributes-->
+    <aura:attribute name="toEmail" type="String" access="global" />
+    <aura:attribute name="templateId" type="String" access="global" />
+    <aura:attribute name="roleId" type="String" access="global" />
+    <aura:attribute name="parentId" type="String" access="global" />
+    <aura:attribute name="exposureId" type="String" access="global" />
+    <aura:attribute name="exposureForRole" type="String" access="global" />
+    <aura:attribute name="ccEmails" type="String" access="global" />
+    <aura:attribute name="fileIds" type="String" access="global" />
+    <aura:attribute name="IsSpinner" type="Boolean" />
+
+    <aura:attribute name="allRolesSelected" type="String[]" access="global" />
+    <aura:attribute name="allEmailsSelected" type="String[]" access="global" />
+    <aura:attribute name="allManualEmailsSelected" type="String[]" access="global" />
+    <aura:attribute name="allCCEmailsSelected" type="String[]" access="global" />
+    <aura:attribute name="allManualCCEmailsSelected" type="String[]" access="global" />
+
+    <lightning:spinner aura:id="Spinner" alternativeText="Loading" size="medium" variant="brand" class="slds-hide" />
+
+    <lightning:quickActionAPI aura:id="quickActionAPI" />
+    <lightning:workspaceAPI aura:id="workspace" />
+
+
+    <div style="padding-top: 15px;">
+        <h3 class="slds-page-header__title slds-m-right_small slds-align-middle slds-truncate" title="Files">{!$Label.c.Omni_Adhoc_AttachFiles}</h3>
+    </div>
+    <lightning:accordion allowMultipleSectionsOpen="true">
+        <lightning:accordionSection label="{!$Label.c.Omni_Adhoc_UploadFiles}" name="upload">
+            <lightning:fileUpload name="fileUploader" multiple="false" recordId="{!v.userId}" onuploadfinished="{! c.handleUploadFinished }" />
+        </lightning:accordionSection>
+
+        <lightning:accordionSection label="{!$Label.c.Omni_Adhoc_AddFilesFromECM}" name="ecmFiles">
+            <c:Omni_EcmFilesList claimNumber="{!v.claimNumber}" exposureType="{!v.exposureType}" />
+        </lightning:accordionSection>
+    </lightning:accordion>
+
+    <div class="slds-float_right">
+        <lightning:button aura:id="BACK" label="{!$Label.c.Omni_Adhoc_Previous}" variant="neutral" onclick="{!c.onButtonPressed}" />
+        <lightning:button aura:id="NEXT" label="{!$Label.c.Omni_Adhoc_GoToEmailComposer}" variant="brand" onclick="{!c.openTab}" />
+    </div>
+</aura:component>

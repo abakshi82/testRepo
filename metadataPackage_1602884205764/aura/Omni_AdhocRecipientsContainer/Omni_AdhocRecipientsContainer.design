@@ -1,0 +1,16 @@
+<design:component label="Roles Selector">
+    <design:attribute name="flowStage" label="Flow Stage ('recipient' or 'cc')" />
+    <design:attribute name="claimId" label="Claim Id" />
+    <design:attribute name="claimNumber" label="Claim Number" />
+    <design:attribute name="roleSelected" label="Role Selected" />
+    <design:attribute name="emailRecipient" label="Email Recipient" />
+    <design:attribute name="exposureForRole" label="Exposure For Roles Id" />
+    <design:attribute name="preferredLanguage" label="Preferred Language" />
+
+    <design:attribute name="allRolesSelected" label="All Selected Role Ids" />
+    <design:attribute name="allEmailsSelected" label="All Selected Role Emails" />
+    <design:attribute name="allManualEmailsSelected" label="All Selected Manual Role Emails" />
+    <design:attribute name="allCCEmailsSelected" label="All Selected CC Role Emails" />
+    <design:attribute name="allManualCCEmailsSelected" label="All Selected CC Manual Role Emails" />
+
+</design:component>

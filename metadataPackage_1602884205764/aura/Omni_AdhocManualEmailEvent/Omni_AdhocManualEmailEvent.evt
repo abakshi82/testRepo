@@ -1,0 +1,5 @@
+<aura:event type="APPLICATION">
+    <aura:attribute name="flowStage" type="String" />
+    <aura:attribute name="RoleEmails" type="String[]" />
+    <aura:attribute name="CCEmails" type="String[]" />
+</aura:event>

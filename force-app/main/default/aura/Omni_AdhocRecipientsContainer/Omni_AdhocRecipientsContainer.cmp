@@ -1,0 +1,63 @@
+<aura:component implements="force:hasRecordId,force:appHostable,lightning:availableForFlowScreens">
+
+    <aura:attribute name="flowStage" type="String" access="global" />
+    <aura:attribute name="claimId" type="String" access="global" />
+    <aura:attribute name="claimNumber" type="String" access="global" />
+    <aura:attribute name="allRoles" type="Case[]" />
+    <aura:attribute name="data" type="Case[]" />
+    <aura:attribute name="filter" type="String" />
+    <aura:attribute name="roleSelected" type="String" access="global" />
+    <aura:attribute name="emailRecipient" type="String" access="global" />
+    <aura:attribute name="exposureForRole" type="String" access="global" />
+    <aura:attribute name="preferredLanguage" type="String" access="global" />
+    <aura:attribute name="nextButtonDisabled" type="Boolean" access="global" default="true" />
+    <aura:attribute name="previousButtonDisabled" type="Boolean" access="global" default="false" />
+
+    <aura:attribute name="allRolesSelected" type="String[]" access="global" />
+    <aura:attribute name="allEmailsSelected" type="String[]" access="global" />
+    <aura:attribute name="allManualEmailsSelected" type="String[]" access="global" />
+    <aura:attribute name="allCCEmailsSelected" type="String[]" access="global" />
+    <aura:attribute name="allManualCCEmailsSelected" type="String[]" access="global" />
+
+    <aura:registerEvent name="flowStageEvent" type="c:Omni_FlowStagesEvent" />
+
+    <aura:handler event="c:Omni_Adhoc_ChangeNavigationStatus" action="{!c.changeNavigationButtons}" />
+    <aura:handler event="c:Omni_SelectedRolesEvent" action="{!c.saveAllSelectedRoles}" />
+    <aura:handler event="c:Omni_Adhoc_AllManualEmailsEvent" action="{!c.saveAllManualEmails}" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+
+    <lightning:tabset selectedTabId="roles">
+        <aura:if isTrue="{!v.flowStage == $Label.c.Omni_Adhoc_Recipient}">
+            <lightning:tab label="{!$Label.c.Omni_Adhoc_PrimaryRecipient}" id="roles">
+                <c:Omni_RolesRelatedToClaimList claimId="{!v.claimId}" claimNumber="{!v.claimNumber}" emailRecipient="{!v.emailRecipient}" exposureForRole="{!v.exposureForRole}" preferredLanguage="{!v.preferredLanguage}" roleSelected="{!v.roleSelected}" flowStage="{!v.flowStage}"
+                    allRolesSelected="{!v.allRolesSelected}" />
+            </lightning:tab>
+            <aura:set attribute="else">
+                <lightning:tab label="{!$Label.c.Omni_Adhoc_CCdRecipients}" id="roles">
+                    <c:Omni_RolesRelatedToClaimList claimId="{!v.claimId}" claimNumber="{!v.claimNumber}" emailRecipient="{!v.emailRecipient}" exposureForRole="{!v.exposureForRole}" preferredLanguage="{!v.preferredLanguage}" roleSelected="{!v.roleSelected}" flowStage="{!v.flowStage}"
+                    />
+                </lightning:tab>
+            </aura:set>
+        </aura:if>
+
+        <lightning:tab label="{!$Label.c.Omni_Adhoc_ManualEntry}" id="manual">
+            <aura:if isTrue="{!v.flowStage == $Label.c.Omni_Adhoc_Recipient}">
+                <c:Omni_AdhocManualEmails flowStage="{!v.flowStage}" emailsArray="{!v.allManualEmailsSelected}" />
+                <aura:set attribute="else">
+                    <c:Omni_AdhocManualEmails flowStage="{!v.flowStage}" emailsArray="{!v.allManualCCEmailsSelected}" />
+                </aura:set>
+            </aura:if>
+        </lightning:tab>
+
+        <div class="slds-float_right slds-m-left_xx-small">
+            <lightning:button aura:id="NEXT" label="{!$Label.c.Omni_Adhoc_Next}" disabled="{!v.nextButtonDisabled}" variant="brand" onclick="{!c.onNextButtonPressed}" />
+        </div>
+        <div class="slds-float_right">
+            <lightning:button aura:id="BACK" disabled="{!v.previousButtonDisabled}" variant="neutral" label="{!$Label.c.Omni_Adhoc_Previous}" onclick="{!c.onPreviousButtonPressed}" />
+        </div>
+
+    </lightning:tabset>
+
+
+</aura:component>

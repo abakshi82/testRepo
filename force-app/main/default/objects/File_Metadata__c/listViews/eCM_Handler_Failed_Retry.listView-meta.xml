@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>eCM_Handler_Failed_Retry</fullName>
+    <columns>NAME</columns>
+    <columns>Case__c</columns>
+    <columns>Document_Title__c</columns>
+    <columns>Document_Processing_Status__c</columns>
+    <columns>File_Mime_Type__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Handler_ECM_Failure__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>Sent_to_Handler__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <label>eCM/Handler Failed - Retry</label>
+    <language>en_US</language>
+</ListView>

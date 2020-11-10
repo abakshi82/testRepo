@@ -1,0 +1,111 @@
+<aura:component implements="flexipage:availableForRecordHome,lightning:actionOverride,force:lightningQuickAction" access="global" controller="Omni_Aura_EmailReplyController">
+
+    <!--declare attributes-->
+
+    <aura:attribute name="selectedRecord" type="sObject" default="{}" access="public" description="Store SELECTED sObject Record" />
+    <aura:attribute name="hasMissingClaimError" type="Boolean" default="false" access="public" description="If record is required, show or hide error message" />
+
+    <aura:attribute name="activeSections" type="String[]" default="['Recipient', 'CC Emails', 'Exposure', 'Email Template', 'Files']" access="public" />
+    <aura:attribute name="activeRecipientSubsections" type="String[]" default="['Recipient Roles', 'Recipient Manuals']" access="public" />
+    <aura:attribute name="activeCCSubsections" type="String[]" default="['CC Roles', 'CC Manuals']" access="public" />
+
+    <aura:attribute name="replyAll" type="Boolean" access="global" />
+    <aura:attribute name="recordId" type="String" access="global" />
+    <aura:attribute name="email" type="EmailMessage" access="global" />
+    <aura:attribute name="claimNumber" type="String" access="global" />
+    <aura:attribute name="claimId" type="String" access="global" />
+    <aura:attribute name="exposure" type="Case" access="global" />
+    <aura:attribute name="exposureType" type="String" access="global" />
+    <aura:attribute name="fileIds" type="String" access="global" />
+    <aura:attribute name="userId" type="String" />
+    <aura:attribute name="isIncoming" type="Boolean" />
+    <aura:attribute name="selectedIds" type="String" access="global" />
+    <aura:attribute name="fileNames" type="String[]" access="global" />
+    <aura:attribute name="filesFromECM" type="List" access="global" />
+    <aura:attribute name="FromAddress" type="String" access="global" />
+    <aura:attribute name="CcAddress" type="String[]" access="global" />
+    <aura:attribute name="ToAddress" type="String[]" access="global" />
+    <aura:attribute name="invalidCase" type="Boolean" access="global" default="false" />
+
+    <!--declare events hendlers-->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler name="fileRetrievedEvent" event="c:Omni_EcmFilesListEvent" action="{!c.addRetrievedFile}" />
+
+    <lightning:quickActionAPI aura:id="quickActionAPI" />
+    <lightning:workspaceAPI aura:id="workspace" />
+
+    <aura:if isTrue="{!v.invalidCase}">
+        {!$Label.c.Omni_ReplyPlus_CanntUse}
+        <aura:set attribute="else">
+            <div class="scrollable sWrapMain uiScrollerWrapper">
+                <div class="slds-template__container">
+                    <div class="slds-p-around_small slds-size_12-of-12">
+                        <div class="slds-grid slds-gutters">
+                            <div class="slds-p-around_small slds-size_3-of-12">
+
+                                <div style="padding-top: 15px;">
+                                    <h3 class="slds-page-header__title slds-m-right_small slds-align-middle slds-truncate" title="Summary">{!$Label.c.Omni_Adhoc_EmailSummary}</h3>
+                                </div>
+                                <lightning:accordion allowMultipleSectionsOpen="true" activeSectionName="{! v.activeSections }">
+
+                                    <lightning:accordionSection label="{!$Label.c.Omni_Adhoc_PrimaryRecipient}" name="Recipient">
+                                        <lightning:accordion allowMultipleSectionsOpen="true" activeSectionName="{! v.activeRecipientSubsections }">
+                                            <aura:iteration items="{!v.ToAddress}" var="email">
+                                                <lightning:formattedText value="{!email}" /><br/>
+                                            </aura:iteration>
+                                        </lightning:accordion>
+                                    </lightning:accordionSection>
+
+                                    <lightning:accordionSection label="{!$Label.c.Omni_Adhoc_CCdRecipients}" name="CC Emails">
+                                        <lightning:accordion allowMultipleSectionsOpen="true" activeSectionName="{! v.activeCCSubsections }">
+                                            <aura:iteration items="{!v.CcAddress}" var="email">
+                                                <lightning:formattedText value="{!email}" /><br/>
+                                            </aura:iteration>
+                                        </lightning:accordion>
+                                    </lightning:accordionSection>
+
+                                    <lightning:accordionSection label="{!$Label.c.Omni_Adhoc_Exposure}" name="Exposure">
+                                        <aura:if isTrue="{!v.exposure}">
+                                            <c:Omni_ExposureRecordComponent exposure="{!v.exposure}" exposureId="{!v.exposure.Id}" selected="false" />
+                                        </aura:if>
+                                    </lightning:accordionSection>
+
+                                    <lightning:accordionSection label="{!$Label.c.Omni_Adhoc_Files}" name="Files">
+                                        <aura:iteration items="{!v.fileNames}" var="fileName">
+                                            <lightning:formattedText value="{!fileName}" /><br/>
+                                        </aura:iteration>
+                                    </lightning:accordionSection>
+
+                                </lightning:accordion>
+                            </div>
+                            <div class="slds-size_9-of-12">
+
+                                <div class="slds-card__body slds-card__body_inner centerWrapper flowruntimeBody">
+                                    <div style="padding-top: 15px;">
+                                        <h3 class="slds-page-header__title slds-m-right_small slds-align-middle slds-truncate" title="Files">{!$Label.c.Omni_Adhoc_AttachFiles}</h3>
+                                    </div>
+                                    <lightning:accordion allowMultipleSectionsOpen="true">
+                                        <lightning:accordionSection label="{!$Label.c.Omni_Adhoc_UploadFiles}" name="upload">
+                                            <lightning:fileUpload name="fileUploader" multiple="false" recordId="{!v.userId}" onuploadfinished="{! c.handleUploadFinished }" />
+                                        </lightning:accordionSection>
+
+                                        <lightning:accordionSection label="{!$Label.c.Omni_Adhoc_AddFilesFromECM}" name="ecmFiles">
+                                            <c:Omni_EcmFilesList claimNumber="{!v.claimNumber}" exposureType="{!v.exposureType}" filesList="{!v.filesFromECM}" />
+                                        </lightning:accordionSection>
+                                    </lightning:accordion>
+
+                                    <div class="slds-float_right">
+                                        <lightning:button aura:id="NEXT" label="{!$Label.c.Omni_Adhoc_GoToEmailComposer}" variant="brand" onclick="{!c.openTab}" />
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aura:set>
+    </aura:if>
+
+
+</aura:component>

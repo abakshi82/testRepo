@@ -1,0 +1,15 @@
+<apex:page lightningStylesheets="true" showHeader="false" sidebar="false" controller="Omni_PreviewEditPrintLetterController">
+    <apex:form >
+        <br/>
+            <apex:commandButton action="{!saveAndShowPDF}" value="{!$Label.Omni_PreviewEditPrintLetter_SaveAndPrint}"/>
+            <apex:commandButton action="{!returnToCase}" value="{!$Label.Omni_Common_Button_Cancel}"/>
+        <br/>
+        <br/>
+        <apex:inputtextarea label="RichText" richtext="true"  value="{!letterBody}" id="Body" cols="100" rows="60"/>
+        <br/>
+            <apex:commandButton action="{!saveAndShowPDF}" value="{!$Label.Omni_PreviewEditPrintLetter_SaveAndPrint}"/>
+            <apex:commandButton action="{!returnToCase}"  value="{!$Label.Omni_Common_Button_Cancel}"/>
+        <br/>
+        <br/>
+    </apex:form>
+</apex:page>

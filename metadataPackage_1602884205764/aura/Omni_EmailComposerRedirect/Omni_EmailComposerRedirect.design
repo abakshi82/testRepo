@@ -1,0 +1,10 @@
+<design:component>
+	<design:attribute name="templateId" label="Template Id" />
+	<design:attribute name="parentId" label="Case Id" />
+	<design:attribute name="roleId" label="Role Id" />
+	<design:attribute name="exposureForRole" label="Exposure For Role Id" />
+	<design:attribute name="exposureId" label="Exposure Id" />
+	<design:attribute name="toEmail" label="To Email" />
+	<design:attribute name="ccEmails" label="CC Emails" />
+	<design:attribute name="fileIds" label="File Ids" />
+</design:component>

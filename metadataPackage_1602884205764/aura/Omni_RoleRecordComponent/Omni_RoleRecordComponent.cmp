@@ -1,0 +1,30 @@
+<aura:component implements="lightning:availableForFlowScreens">
+    <aura:attribute name="flowStage" type="String" access="global" />
+    <aura:attribute name="role" type="Case" />
+    <aura:attribute name="roleSelected" type="Case" access="global" />
+    <aura:attribute name="roleId" type="String" />
+    <aura:attribute name="selected" type="boolean" access="public" default="false" />
+
+    <aura:registerEvent name="roleEvent" type="c:Omni_Adhoc_IndividualRoleSelectedEvent" />
+
+
+    <div onclick="{!c.select}" class="{! v.selected ? 'tile selected' : 'tile'}" style="cursor:pointer">
+        <lightning:tile class="innertile">
+            <aura:set attribute="media">
+                <lightning:icon iconName="standard:individual" />
+            </aura:set>
+            <b><p class="slds-truncate"><lightning:formattedText title="Party Name" value="{!v.role.PartyAccount__r.Name}" /></p></b>
+            <p class="slds-truncate">
+                <lightning:formattedText title="Role" value="{!v.role.Nature_of_Role__c}" />
+            </p>
+            <p class="slds-truncate">
+                <lightning:formattedText title="Role Email" value="{!v.role.Email_Address_for_Role__c}" />
+            </p>
+            <aura:if isTrue="{!v.role.ExposureForRole__r.ExposureType__r.Name != null}">
+                <p class="slds-truncate">
+                    <lightning:formattedText title="Exposure" value="{!'Exposure: ' + v.role.ExposureForRole__r.ExposureType__r.Name}" />
+                </p>
+            </aura:if>
+        </lightning:tile>
+    </div>
+</aura:component>

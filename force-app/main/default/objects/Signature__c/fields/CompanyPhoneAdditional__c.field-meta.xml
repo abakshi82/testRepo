@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CompanyPhoneAdditional__c</fullName>
+    <description>additional logic to build company phone based on PIG and Province of Issuance</description>
+    <externalId>false</externalId>
+    <formula>IF(
+	PIG_TypeCode__c=&quot;belairBNA&quot;, 
+	CASE(ProvinceOfIssuanceId__c,
+			&quot;ON&quot;,$CustomMetadata.PhoneNumberConfig__mdt.ON_belairBNA.PhoneNumber__c,
+			&quot;QC&quot;,$CustomMetadata.PhoneNumberConfig__mdt.QC_belairBNA.PhoneNumber__c,
+			&quot;AB&quot;,$CustomMetadata.PhoneNumberConfig__mdt.AB_belairBNA.PhoneNumber__c,
+			&quot;BC&quot;,$CustomMetadata.PhoneNumberConfig__mdt.BC_belairBNA.PhoneNumber__c,
+			&quot;MB&quot;,$CustomMetadata.PhoneNumberConfig__mdt.MB_belairBNA.PhoneNumber__c,
+			&quot;NT&quot;,$CustomMetadata.PhoneNumberConfig__mdt.NT_belairBNA.PhoneNumber__c,
+			&quot;NU&quot;,$CustomMetadata.PhoneNumberConfig__mdt.NU_belairBNA.PhoneNumber__c,
+			&quot;SK&quot;,$CustomMetadata.PhoneNumberConfig__mdt.SK_belairBNA.PhoneNumber__c,
+			&quot;YT&quot;,$CustomMetadata.PhoneNumberConfig__mdt.YT_belairBNA.PhoneNumber__c,
+			&quot;NB&quot;,$CustomMetadata.PhoneNumberConfig__mdt.NB_belairBNA.PhoneNumber__c,
+			&quot;NL&quot;,$CustomMetadata.PhoneNumberConfig__mdt.NL_belairBNA.PhoneNumber__c,
+			&quot;NS&quot;,$CustomMetadata.PhoneNumberConfig__mdt.NS_belairBNA.PhoneNumber__c,
+			&quot;PE&quot;,$CustomMetadata.PhoneNumberConfig__mdt.PE_belairBNA.PhoneNumber__c,
+			&quot;1800-999-999&quot;), 
+	IF
+	(
+	PIG_TypeCode__c=&quot;trafalgar&quot;, 
+	CASE(ProvinceOfIssuanceId__c,
+			&quot;ON&quot;,$CustomMetadata.PhoneNumberConfig__mdt.ON_trafalgar.PhoneNumber__c,
+			&quot;QC&quot;,$CustomMetadata.PhoneNumberConfig__mdt.QC_trafalgar.PhoneNumber__c,
+			&quot;AB&quot;,$CustomMetadata.PhoneNumberConfig__mdt.AB_trafalgar.PhoneNumber__c,
+			&quot;BC&quot;,$CustomMetadata.PhoneNumberConfig__mdt.BC_trafalgar.PhoneNumber__c,
+			&quot;MB&quot;,$CustomMetadata.PhoneNumberConfig__mdt.MB_trafalgar.PhoneNumber__c,
+			&quot;NT&quot;,$CustomMetadata.PhoneNumberConfig__mdt.NT_trafalgar.PhoneNumber__c,
+			&quot;NU&quot;,$CustomMetadata.PhoneNumberConfig__mdt.NU_trafalgar.PhoneNumber__c,
+			&quot;SK&quot;,$CustomMetadata.PhoneNumberConfig__mdt.SK_trafalgar.PhoneNumber__c,
+			&quot;YT&quot;,$CustomMetadata.PhoneNumberConfig__mdt.YT_trafalgar.PhoneNumber__c,
+			&quot;NB&quot;,$CustomMetadata.PhoneNumberConfig__mdt.NB_trafalgar.PhoneNumber__c,
+			&quot;NL&quot;,$CustomMetadata.PhoneNumberConfig__mdt.NL_trafalgar.PhoneNumber__c,
+			&quot;NS&quot;,$CustomMetadata.PhoneNumberConfig__mdt.NS_trafalgar.PhoneNumber__c,
+			&quot;PE&quot;,$CustomMetadata.PhoneNumberConfig__mdt.PE_trafalgar.PhoneNumber__c,
+			&quot;1800-999-999&quot;),  
+	
+	&quot;1800-999-999&quot;
+	)
+	)</formula>
+    <label>Company Phone Additional</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

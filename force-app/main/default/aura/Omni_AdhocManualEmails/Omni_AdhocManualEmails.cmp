@@ -1,0 +1,28 @@
+<aura:component implements="lightning:availableForFlowScreens">
+    <aura:attribute name="flowStage" type="String" access="global" />
+    <aura:attribute name="emails" type="String" access="global" />
+    <aura:attribute name="emailsArray" type="String[]" access="global" />
+    <aura:attribute name="valid" type="Boolean" default="false" />
+
+    <aura:registerEvent name="flowStageEvent" type="c:Omni_FlowStagesEvent" />
+    <!--<aura:registerEvent name="CCEmailsEvent" type="c:Omni_AdhocCCEmailsEvent" />-->
+    <aura:registerEvent name="ManualEmailsEvent" type="c:Omni_AdhocManualEmailEvent" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <lightning:layout>
+        <lightning:layoutItem size="12" padding="around-small">
+            <div style="padding-top: 15px;">
+                <aura:if isTrue="{!v.flowStage == $Label.c.Omni_Adhoc_Recipient}">
+                    <h3 class="slds-page-header__title slds-m-right_small slds-align-middle slds-truncate" title="Roles">{!$Label.c.Omni_Adhoc_EmailRecipients}</h3>
+                    <aura:set attribute="else">
+                        <h3 class="slds-page-header__title slds-m-right_small slds-align-middle slds-truncate" title="Roles">{!$Label.c.Omni_Adhoc_EmailCCdRecipients}</h3>
+                    </aura:set>
+                </aura:if>
+            </div>
+            <lightning:input aura:id="ccEmailForm" type="text" onchange="{!c.validationMessage}" name="CCEmail" value="{!v.emails}" messageWhenPatternMismatch="{!$Label.c.Omni_Adhoc_CCEmailError}" pattern="^(([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)(\s*,\s*|\s*$))*$"
+            />
+        </lightning:layoutItem>
+    </lightning:layout>
+
+</aura:component>

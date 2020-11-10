@@ -1,0 +1,19 @@
+<aura:component controller="Omni_AdhocFlowController">
+    <aura:attribute name="activeSections" type="String[]" default="['Files']" access="public" />
+    <aura:attribute name="fileNames" type="String[]" access="public" />
+
+    <div style="padding-top: 15px;">
+        <h3 class="slds-page-header__title slds-m-right_small slds-align-middle slds-truncate" title="Summary">{!$Label.c.Omni_Adhoc_EmailSummary}</h3>
+    </div>
+    <lightning:accordion allowMultipleSectionsOpen="true" activeSectionName="{! v.activeSections }">
+
+        <lightning:accordionSection label="{!$Label.c.Omni_Adhoc_Files}" name="Files">
+            <p class="slds-truncate">
+                <aura:iteration items="{!v.fileNames}" var="fileName">
+                    <lightning:formattedText value="{!fileName}" /><br/>
+                </aura:iteration>
+            </p>
+        </lightning:accordionSection>
+
+    </lightning:accordion>
+</aura:component>
