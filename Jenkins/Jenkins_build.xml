@@ -1,0 +1,64 @@
+<project name="RoP" default="deployCode" basedir="." xmlns:sf="antlib:com.salesforce">
+
+	<property file="build.properties"/>
+
+	<!-- Setting default value for username, password and session id properties to empty string 
+         so unset values are treated as empty. Without this, ant expressions such as ${sf.username}
+         will be treated literally.
+    -->
+
+
+	<condition property="sf.sessionId" value="">
+		<not>
+			<isset property="sf.sessionId"/>
+		</not>
+	</condition>
+
+	<!--
+	1.  Create a variable in the build process with the valid value of username named "propName"
+	2.  Create a variable in the build process with the valid value of password named "propPass"
+
+	<echo message="Password: ${propPass}"/>
+	<echo message="UserName: ${propName}"/>
+	-->
+
+	<taskdef resource="com/salesforce/antlib.xml"
+    	uri="antlib:com.salesforce">
+
+		<classpath>
+			<pathelement location="ant-salesforce.jar" />
+		</classpath>
+	</taskdef>
+	
+	<target name="proxy">
+        <property name="proxy.host" value="proxy-pac.ca.sunlife" />
+        <property name="proxy.port" value="8443" />
+        <setproxy proxyhost="${proxy.host}" proxyport="${proxy.port}"  />
+	</target>
+	
+	
+	<!-- Deploy code and DO NOT run unit tests.  -->
+	<target name="deployCode" depends="proxy">
+		<sf:deploy username="${sf.username}" password="${sf.password}" sessionId="${sf.sessionId}" serverurl="${sf.serverurl}" 
+      		maxPoll="${sf.maxPoll}" deployRoot="..\src" testLevel="NoTestRun" rollbackOnError="true" logType="Debugonly"/>
+	</target>
+
+	<!-- Validate Deploy with no Unit Tests. -->
+	<target name="validateDeploy" depends="proxy">
+		<sf:deploy username="${sf.username}" password="${sf.password}" sessionId="${sf.sessionId}" serverurl="${sf.serverurl}" 
+      		maxPoll="${sf.maxPoll}" deployRoot="..\src" checkOnly="true" testLevel="NoTestRun" rollbackOnError="true" logType="Debugonly"/>
+	</target>
+
+	<!-- Validate Deploy with Unit Tests. -->
+	<target name="validateDeployWithTest" depends="proxy">
+		<sf:deploy username="${sf.username}" password="${sf.password}" sessionId="${sf.sessionId}" serverurl="${sf.serverurl}" 
+	      	maxPoll="${sf.maxPoll}" deployRoot="..\src" checkOnly="true" testLevel="RunLocalTests" rollbackOnError="true" logType="Debugonly"/>
+	</target>
+
+	<!-- Run the Unit Tests only, no components deployed. -->
+	<target name="runUnitTestsOnly" depends="proxy">
+		<sf:deploy username="${sf.username}" password="${sf.password}" sessionId="${sf.sessionId}" serverurl="${sf.serverurl}" 
+			maxPoll="${sf.maxPoll}" deployRoot="..\emptysource" testLevel="RunLocalTests" logType="Debugonly" checkOnly="true"/>
+	</target>
+
+</project>
