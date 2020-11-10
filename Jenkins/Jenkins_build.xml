@@ -39,7 +39,7 @@
 	
 	<!-- Deploy code and DO NOT run unit tests.  -->
 	<target name="deployCode">
-		<sf:deploy username="${sf.username}" password="${sf.password}" sessionId="${sf.sessionId}" serverurl="https://login.salesforce.com" 
+		<sf:deploy username="akbakshi@testorg3.com" password="testorg9879!MQs4PYR9C4QMxRU83OUDXHgWn" sessionId="${sf.sessionId}" serverurl="https://login.salesforce.com" 
       		maxPoll="20" deployRoot="../force-app/main/default" testLevel="NoTestRun" rollbackOnError="true" logType="Debugonly"/>
 	</target>
 
